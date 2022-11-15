@@ -1,17 +1,20 @@
 ---
 id: glossary
 title: Glossary
-description: "Key Polygon terms."
+description: Key Polygon terms
 keywords:
   - docs
   - matic
   - polygon
   - glossary
+  - jargons
 slug: glossary
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
 
-## Block producer
+# Glossary
+
+## Block Producer
 
 A block producer is an active [validator](#validator) selected to act as block producer for a [span](#span).
 
@@ -23,7 +26,7 @@ A Bor node is a node producing blocks on the Polygon Network.
 
 Bor is based on [Go Ethereum](https://geth.ethereum.org/).
 
-## Checkpoint transaction
+## Checkpoint Transaction
 
 A checkpoint transaction is a transaction containing the Merkle root of blocks of the [Bor](#bor) layer between the checkpoint intervals.
 
@@ -46,7 +49,7 @@ The delegator role stakes the MATIC tokens to secure the Polygon Network with ex
 
 See also [Who Is a Delegator](/docs/maintain/polygon-basics/who-is-delegator).
 
-## Full node
+## Full Node
 
 A full node is a fully synced [sentry node](#sentry) running both [Heimdall](#heimdall) and [Bor](#bor).
 
@@ -58,13 +61,13 @@ A Heimdall node is a node running in parallel to the Ethereum mainnet, monitorin
 
 Heimdall is based on [Tendermint](https://tendermint.com/).
 
-## Owner address
+## Owner Address
 
 An owner address is the address used to stake, restake, change the signer address, withdraw rewards and manage delegation related parameters on the Ethereum mainnet.
 
-While the [signer key](#signer-address) is kept on the node and is considered a *hot* wallet, the owner key must be kept very secure, used infrequently, and is considered a *cold* wallet.
+While the [signer key](#signer-address) is kept on the node and is considered a **hot** wallet, the owner key must be kept very secure, used infrequently, and is considered a **cold** wallet.
 
-See also [Key Management](validator/core-components/key-management).
+See also [Key Management](validator/core-components/key-management.md).
 
 ## Proposer
 
@@ -88,22 +91,22 @@ See also [Bor Consensus: Span](/docs/pos/bor/consensus/#span).
 
 ## Staking
 
-Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators/stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
+Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators / stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
 
-See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake).
+See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake.md).
 
 ## Signer address
 
 A signer address is the address of an Ethereum account of the [Heimdall](#heimdall) validator node. The signer address signs and submits the [checkpoint transactions](#checkpoint-transaction).
 
-While the signer key is kept on the node and is considered a *hot* wallet, the [owner key](#owner-address) must be kept very secure, used infrequently, and is considered a *cold* wallet.
+While the signer key is kept on the node and is considered a **hot** wallet, the [owner key](#owner-address) must be kept very secure, used infrequently, and is considered a **cold** wallet.
 
-See also [Key Management](validator/core-components/key-management).
+See also [Key Management](validator/core-components/key-management.md).
 
 ## Validator
 
-The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](/docs/maintain/glossary#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
+The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
 
 A validator node is only open to its [sentry](#sentry) node and closed to the rest of the network.
 
-See also [Who Is a Validator](/docs/maintain/polygon-basics/who-is-validator).
+See also [Who Is a Validator](polygon-basics/who-is-validator.md).

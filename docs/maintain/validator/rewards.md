@@ -9,19 +9,19 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
 
-For an introduction to Polygon and the Proof of Stake algorithm, see:
+# Rewards
 
-* [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake)
+For an introduction to Polygon and the Proof of Stake algorithm, see [What Is Proof of Stake](/docs/home/polygon-basics/what-is-proof-of-stake)
 
 In Polygon, validators stake their MATIC tokens as collateral to work for the security of the network, and in exchange for their service, earn rewards.
 
 To leverage Polygon's economics, you should either become a validator or a delegator.
 
 To be a [validator](/docs/maintain/glossary#validator), you need to **run a full validator** node and stake MATIC. See [Validate](/docs/maintain/validate/validator-index).
-Check the [Validator Responsibilities](/docs/maintain/validate/validator-responsibilities).
+
+Also check the [Validator Responsibilities](/docs/maintain/validate/validator-responsibilities) page.
 
 To be a [delegator](/docs/maintain/glossary#delegator), you only need to **delegate MATIC to a validator**. See [Delegate](/docs/maintain/delegate/delegate).
-
 
 ## What is the incentive?
 

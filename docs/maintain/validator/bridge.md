@@ -11,6 +11,8 @@ slug: bridge
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
 
+# Bridge
+
 :::info
 
 This section is a work in progress.

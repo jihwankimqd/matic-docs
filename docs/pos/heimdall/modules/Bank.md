@@ -1,13 +1,17 @@
 ---
 id: bank
 title: Bank
-description: "Module handling account balance transfers for Heimdall."
+description: Module handling account balance transfers for Heimdall
 keywords:
   - docs
   - matic
+  - bank
+  - account balance
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Overview
+
+# Bank Module
 
 The `bank` module handles account balance transfers for Heimdall. This module corresponds to the `bank` module from cosmos-sdk.
 
@@ -38,7 +42,7 @@ type MsgMultiSend struct {
 }
 ```
 
-## **Parameters**
+## Parameters
 
 The bank module contains the following parameters:
 
@@ -46,11 +50,11 @@ The bank module contains the following parameters:
 |----------------------|--------|------------------|
 |`sendenabled`       |bool|true|
 
-## CLI commands
+## CLI Commands
 
-### Send balance
+### Send Balance
 
-Following command will send 1000 matic tokens to mentioned `address`
+Following command will send 1000 matic tokens to mentioned `address`;
 
 ```bash
 heimdallcli tx bank send <address> 1000matic --chain-id <chain-id>

@@ -2,15 +2,20 @@
 id: staking
 title: Staking
 sidebar_label: Staking
-description: "Stake, unstake, and restake as a validator."
+description: Stake, unstake, and restake as a validator
 keywords:
   - docs
   - matic
   - polygon
   - staking
+  - unstake
+  - restake
+  - validator
 slug: staking
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
+
+# Staking
 
 For Polygon Network, any participant can be qualified to become a Polygon's validator by running a full node to earn rewards and collect transaction fees. To ensure the good participation by validators, they lock up some of their MATIC tokens as a stake in the ecosystem.
 
@@ -18,7 +23,7 @@ Validators in Polygon Network are selected via an on-chain auction process which
 
 A validator has two addresses an owner address and a signer address. The staking is done with the owner address.
 
-See also [Key Management](../key-management).
+See also [Key Management](key-management.md).
 
 ## Stake
 
@@ -30,7 +35,7 @@ A new validator can only join the active set when a currently active validator u
 
 :::
 
-To join the validator set, you must stake your MATIC tokens. See [Validator Staking Operations](../../validate/validator-staking-operations).
+To join the validator set, you must stake your MATIC tokens. See [Validator Staking Operations](/docs/maintain/validate/validator-staking-operations).
 
 ## Unstake
 

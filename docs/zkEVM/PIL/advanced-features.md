@@ -14,11 +14,11 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Advanced Features**
+# Advanced Features
 
 This last section wraps the documentation around PIL by introducing some advanced features that PIL supports, such as permutation checks over multiple (possibly distinct) domains.
 
-## **Public Inputs**
+## Public Inputs
 
 Public inputs are values of a polynomial that are known prior to the execution of a state machine. In the following example, the public input $\texttt{publicInput}$ is set to be the first element of the polynomial $\texttt{a}$ and a colon "$:$" is used to indicate this to the compiler (see line 12 in the code excerpt below).
 
@@ -32,7 +32,7 @@ $$
 
 Whenever relevant, the constraint enforces the value of $\texttt{a}$ to be equal to $\texttt{publicInput}$.
 
-## **Permutation Check**
+## Permutation Check
 
 In this example we use the $\texttt{is}$ keyword to denote that the vectors $[\texttt{sm1.a},\texttt{sm1.b},\texttt{sm1.c}]$ and $[\texttt{sm2.a}, \texttt{sm2.b}, \texttt{sm2.c}]$ are a permutation of each other, seen as evaluations over the designated domain.
 
@@ -40,7 +40,7 @@ In this example we use the $\texttt{is}$ keyword to denote that the vectors $[\t
 
 This constraint becomes useful to connect distinct state machines, since it is forcing that polynomials belonging to different state machines are the same (up to permutation).
 
-## **Two Special Functionalities**
+## Two Special Functionalities
 
 Here are some vectors for which the $\texttt{in}$ and $\texttt{is}$ functionalities are designed for:
 
@@ -53,7 +53,7 @@ $$
 \end{array}
 $$
 
-## **The Connect Keyword**
+## The Connect Keyword
 
 The $\texttt{connect}$ keyword is introduced to denote that the copy constraint argument is applied to $[\texttt{a},\texttt{b},\texttt{c}]$ using the permutation induced by $[\texttt{SA}, \texttt{SB}, \texttt{SC}]$.
 
@@ -63,7 +63,7 @@ Naturally, the previous feature can be used to describe the correctness of an en
 
 ![Plonk Circuit in PIL](figures/fig22-pil-eg-plnk-crct.png)
 
-## **Permutation Check with Multiple Domains**
+## Permutation Check with Multiple Domains
 
 Another important feature is the possibility to prove that polynomials of distinct state machines are the same (up to permutation) in a subset of its elements. This helps to improve efficiency when state machines are defined over subgroups of distinct size, since without this permutation argument one would need to equal the size of both polynomials.
 

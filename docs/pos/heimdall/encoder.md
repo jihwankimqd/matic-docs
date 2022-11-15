@@ -1,21 +1,26 @@
 ---
 id: encoder
 title: Encoder (Pulp)
-description: "RLP encoding to produce special transactions, like checkpoint."
+description: RLP encoding to produce special transactions, like checkpoint
 keywords:
   - docs
   - matic
+  - rlp encoding
+  - checkpoint
+  - encoder
+  - polygon
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Pulp
 
-Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
+# Encoder (Pulp)
 
 Heimdall needs to verify the transactions of Heimdall on the Ethereum chain. For that it uses RLP encoding to produce special transactions, like checkpoint.
 
 This special transaction uses `pulp` (RLP based) encoding instead of default amino encoding.
 
 Pulp uses a prefix-based simple encoding mechanism to solve interface decoding. Check `GetPulpHash` method.
+
+Source: [https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go](https://github.com/maticnetwork/heimdall/blob/master/auth/types/pulp.go)
 
 ```go
 const (
@@ -29,7 +34,7 @@ func GetPulpHash(name string) []byte {
 }
 ```
 
-The below returns prefix-bytes for a given `msg`.  Here is an example on how to register an object for pulp encoding.
+The below returns prefix-bytes for a given `msg`.  Here is an example on how to register an object for pulp encoding:
 
 ```go
 RegisterConcrete(name, obj) {
@@ -42,7 +47,7 @@ RegisterConcrete(name, obj) {
 pulp.RegisterConcrete("A", A{})
 ```
 
-Encoding is just RLP encoding and prepending hash of `GetPulpHash` of the `name` 
+Encoding is just RLP encoding and prepending hash of `GetPulpHash` of the `name`:
 
 ```go
 // EncodeToBytes encodes msg to bytes
@@ -54,7 +59,7 @@ if err != nil {
 result := append(GetPulpHash("A"), txBytes[:]...), nil
 ```
 
-Decoding works like following:
+Decoding works as follows:
 
 ```go
 // retrieve type of objet based on prefix 
@@ -71,8 +76,10 @@ if err := rlp.DecodeBytes(incomingData[PulpHashLength:], newMsg); err != nil {
 // result => newMsg
 ```
 
-For more Information:
+:::info For more information
 
 The Cosmos SDK utilizes two binary wire encoding protocols, [Amino](https://github.com/tendermint/go-amino/) and [Protocol Buffers](https://developers.google.com/protocol-buffers), where Amino is an object encoding specification. It is a subset of Proto3 with an extension for interface support. See the [Proto3 spec](https://developers.google.com/protocol-buffers/docs/proto3) for more information on Proto3, which Amino is largely compatible with (but not with Proto2).
 
 More here: [https://docs.cosmos.network/master/core/encoding.html](https://docs.cosmos.network/master/core/encoding.html)
+
+:::

@@ -1,15 +1,21 @@
 ---
 id: checkpoint
 title: Checkpoint
-description: "Snapshots of the Bor chain state submitted to Ethereum."
+description: Snapshots of the Bor chain state submitted to Ethereum
 keywords:
   - docs
   - matic
+  - polygon
+  - checkpoint
+  - snapshots of bor chain
+  - ethereum
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Checkpoints are the most crucial part of the Matic protocol. It represents snapshots of the Bor chain state and is supposed to be attested by ⅔+ of the validator set before it is validated and submitted on the contracts deployed on Ethereum.
+# Checkpoint
+
+Checkpoints are the most crucial part of the Polygon network. It represents snapshots of the Bor chain state and is supposed to be attested by ⅔+ of the validator set before it is validated and submitted on the contracts deployed on Ethereum.
 
 ## Types
 
@@ -39,7 +45,7 @@ type CheckpointBlockHeader struct {
 }
 ```
 
-**Root hash**
+### Root hash
 
 <img src={useBaseUrl("img/checkpoint/checkpoint.svg")} />
 
@@ -63,7 +69,9 @@ B(n) := keccak256([number, time, tx hash, receipt hash])
 checkpoint's root hash = Merkel[B(1), B(2), ....., B(n)]
 ```
 
-Here are some snippets of how checkpoint is created from Bor chain block headers. Source: [https://github.com/maticnetwork/heimdall/blob/develop/checkpoint/types/merkel.go#L60-L114](https://github.com/maticnetwork/heimdall/blob/develop/checkpoint/types/merkel.go#L60-L114)
+Here are some snippets of how checkpoint is created from Bor chain block headers.
+
+Source: [https://github.com/maticnetwork/heimdall/blob/develop/checkpoint/types/merkel.go#L60-L114](https://github.com/maticnetwork/heimdall/blob/develop/checkpoint/types/merkel.go#L60-L114)
 
 ```go
 // Golang representation of block data used in checkpoint
@@ -85,7 +93,7 @@ tree.Generate(convert(headers), sha3.NewLegacyKeccak256())
 rootHash := tree.Root().Hash
 ```
 
-**AccountRootHash**
+### AccountRootHash
 
 `AccountRootHash` is the hash of the validator account-related information that needs to pass to the Ethereum chain at each checkpoint.
 

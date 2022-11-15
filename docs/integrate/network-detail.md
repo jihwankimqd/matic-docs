@@ -5,8 +5,13 @@ description: "How to understand the JSON response to Network Details."
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png 
+  - polygon
+  - network details
+  - how to read
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Reading Network Details
 
 You can have the network details by visting the below shared support links.
 - Network config: <static.matic.network/network/"network_name"/"version"/index.json>

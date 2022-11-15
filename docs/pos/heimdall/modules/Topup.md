@@ -1,20 +1,24 @@
 ---
 id: topup
 title: Topup
-description: "An amount which will be used to pay fees on Heimdall chain."
+description: An amount which will be used to pay fees on Heimdall chain
 keywords:
   - docs
   - matic
+  - topup
+  - fees
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Overview
+
+# Topup
 
 Heimdall Topup is an amount which will be used to pay fees on Heimdall chain.
 
-There are two ways to topup your account.
+There are two ways to topup your account:
 
-1. When new validator joins, they can mention a `topup` amount as top-up in addition to the staked amount, which will be moved as balance on Heimdall chain to pays fees on Heimdall
-2. A user can directly call the top-up function on the staking smart contract on Ethereum to increase top-up balance on Heimdall
+1. When new validator joins, they can mention a `topup` amount as top-up in addition to the staked amount, which will be moved as balance on Heimdall chain to pays fees on Heimdall.
+2. A user can directly call the top-up function on the staking smart contract on Ethereum to increase top-up balance on Heimdall.
 
 ## Messages
 
@@ -51,7 +55,7 @@ type MsgWithdrawFee struct {
 }
 ```
 
-## CLI commands
+## CLI Commands
 
 ### Topup fee
 

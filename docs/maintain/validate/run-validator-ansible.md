@@ -15,9 +15,11 @@ image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+# Run a Validator Node with Ansible
+
 :::tip
 Steps in this guide involve waiting for the **Heimdall** and **Bor** services to fully sync.
-This process takes several days to complete. Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](../../develop/network-details/snapshot-instructions-heimdall-bor).
+This process takes several days to complete. Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor).
 
 For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
 
@@ -26,19 +28,18 @@ There is limited space for accepting new validators. New validators can only joi
 
 This section guides you through starting and running the validator node through an Ansible playbook.
 
-For the system requirements, see [Validator Node System Requirements](validator-node-system-requirements).
+For the system requirements, see [Validator Node System Requirements](validator-node-system-requirements.md).
 
-If you would like to start and run the validator node from binaries, see [Run a Validator Node from Binaries](run-validator-binaries).
+If you would like to start and run the validator node from binaries, see [Run a Validator Node from Binaries](run-validator-binaries.md).
 
 ## Prerequisites
 
-* Three machines — one local machine on which you will run the Ansible playbook; two remote machines — one [sentry](../glossary#sentry) and one [validator](../glossary#validator).
+* Three machines — one local machine on which you will run the Ansible playbook; two remote machines — one [sentry](/docs/maintain/glossary#sentry) and one [validator](/docs/maintain/glossary#validator).
 * On the local machine, [Ansible](https://www.ansible.com/) installed.
 * On the local machine, [Python 3.x](https://www.python.org/downloads/) installed.
 * On the remote machines, make sure Go is *not* installed.
 * On the remote machines, your local machine's SSH public key is on the remote machines to let Ansible connect to them.
 * We have Bloxroute available as a relay network. If you need a gateway to be added as your Trusted Peer please contact [Delroy on Discord](http://delroy/#0056).
-
 
 ## Overview
 
@@ -297,7 +298,7 @@ The sentry machine must have the following ports open to the world `0.0.0.0/0`:
 
 :::note
 
-However, if they use a VPN connection, they can allow incoming ssh connections only from the VPN IP address.
+However, if they use a VPN connection, they can allow incoming SSH connections only from the VPN IP address.
 
 :::
 
@@ -475,7 +476,9 @@ heimdallcli generate-validatorkey ETHEREUM_PRIVATE_KEY
 ```
 
 :::note
-* ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key.
+
+ETHEREUM_PRIVATE_KEY — your Ethereum wallet’s private key
+
 :::
 
 This will generate `priv_validator_key.json`. Move the generated JSON file to the Heimdall configuration directory:
@@ -495,7 +498,9 @@ heimdallcli generate-keystore ETHEREUM_PRIVATE_KEY
 ```
 
 :::note
-ETHEREUM_PRIVATE_KEY — your Ethereum wallet address.
+
+ETHEREUM_PRIVATE_KEY — your Ethereum wallet address
+
 :::
 
 When prompted, set up a password to the keystore file.
@@ -532,16 +537,6 @@ At this point, you must have:
 ### Start the Heimdall Service
 
 You will now start the Heimdall service on the validator machine. Once the Heimdall service syncs, you will start the Bor service on the validator machine.
-
-:::note
-
-The Heimdall service takes several days to fully sync from scratch.
-
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
-
-For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
-
-:::
 
 Start the Heimdall service:
 
@@ -614,4 +609,4 @@ Now that your sentry and validator nodes are synced and running, head over to [D
 
 ## Proceed to staking
 
-Now that you have your sentry and validator nodes health-checked, proceed to [Staking](../validator/core-components/staking).
+Now that you have your sentry and validator nodes health-checked, proceed to [Staking](/docs/maintain/validator/core-components/staking).

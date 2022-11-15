@@ -13,9 +13,9 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Components**
+# Components
 
-## **Namespaces**
+## Namespaces
 
 State machines in PIL are organized in _namespaces_. Namespaces are written with the keyword $\texttt{namespace}$ followed by the name of the state machine, and they can optionally include other parameters. In the below snippet, a state machine called $\texttt{Name}$ is created.
 
@@ -29,7 +29,7 @@ So, for instance the following two examples are not allowed:
 
 ![PIL No Common Names](figures/fig14-pil-nmspc-unique.png)
 
-## **Polynomials**
+## Polynomials
 
 _Polynomials_ are the key component of PIL. Values of polynomials have to be compared with computational trace's columns. In fact, in PIL, the two are considered to be the same thing. More precisely, polynomials are just the interpolation of the columns over all the rows of the computational trace.
 
@@ -39,7 +39,7 @@ Every polynomial is prefixed with the keyword $\texttt{pol}$ and needs to be exp
 
 Consequently, in PIL there exist two keywords to denote the two types of polynomials: $\texttt{constant}$ and $\texttt{commit}$.
 
-### **Constant Polynomials**
+### Constant Polynomials
 
 _Constant polynomials_, also known in the literature as _preprocessed polynomials_, are polynomials known prior to the execution of the state machine. They correspond to polynomials that do not change during the execution, and are known to both the Prover $\mathcal{P}$ and the Verifier $\mathcal{V}$ prior to execution. They can be thought of as the preprocessed polynomials of an arithmetic circuit.
 
@@ -47,7 +47,7 @@ _Constant polynomials_, also known in the literature as _preprocessed polynomial
 
 A typical use of these polynomials is in the inclusion of selectors, latches and sequencers. A constant polynomial is created or initialize as a polynomial with the keyword $\texttt{constant}$. And it is typically written in uppercase. This is good practice as it helps to differentiate them from the committed ones.
 
-### **Committed Polynomials**
+### Committed Polynomials
 
 ![A Constant in PIL](figures/fig16-pil-a-cnst.png)
 
@@ -69,7 +69,7 @@ The output of the computation in each state transition is included in the state 
 
 State variables depend on the input and the constant polynomials. They are also therefore labelled as $\texttt{committed}$.
 
-## **Polynomial Element Types**
+## Polynomial Element Types
 
 A polynomial definition can also contain a keyword indicating the type of elements a polynomial is composed of. Types include, for instance, $\texttt{bool}$, $\texttt{u16}$, $\texttt{field}$.
 
@@ -77,7 +77,7 @@ A polynomial definition can also contain a keyword indicating the type of elemen
 
 The type is strictly informative. This means that to enforce the elements of some polynomial to be restricted over some smaller domain, one should include a constraint reflecting the bounds.
 
-## **Constraints**
+## Constraints
 
 The set of _constraints_ is one of the most important part of a PIL code. The constraints are defined to be the set of relations between polynomials that dictate the correct evolution of the state machine at every step. A state machine does what it does because the set of constraints enforces such a behavior.
 

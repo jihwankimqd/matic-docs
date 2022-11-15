@@ -16,9 +16,9 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Build on Polygon zkEVM**
+# Build on Polygon zkEVM
 
-## **Introduction**
+## Introduction
 
 Polygon zkEVM is the first zero-knowledge scaling solution that is **fully equivalent to an EVM**. All existing smart contracts, developer toolings and wallets work seamlessly. Polygon zkEVM harnesses the power of zero-knowledge proofs in order to reduce transaction costs and massively increase throughput, all while inheriting the security of Ethereum.
 
@@ -32,7 +32,7 @@ You don't need special toolings or Wallets to build or interact with Polygon zkE
 
 Developers will be able to deploy their existing contracts to the zkEVM, and Users can deposit assets from Ethereum and transact off-chain. These transactions are grouped into batches with zero-knowledge proof attesting to the validity of each transaction.
 
-## **Connecting to zkEVM**
+## Connecting to zkEVM
 
 In order to add the **Polygon zkEVM** network to your wallet, you will need to enter the following details:
 
@@ -51,7 +51,7 @@ Check out this video tutorial on how to add Polygon zkEVM Testnet to Metamask an
   <p>Your browser does not support the video element.</p>
 </video>
 
-## **zkEVM Support**
+## zkEVM Support
 
 If you need help with anything related to the Polygon zkEVM, you can raise a ticket on the Polygon Support](https://support.polygon.technology/support/tickets/new) portal, and check out the [Knowledge base](https://support.polygon.technology/support/solutions/folders/82000694871) to view the most common queries about the zkEVM. Additionally, you can reach out to the support team available on the **#zkevm-support** channel on the [Polygon Discord server](https://discord.com/invite/XvpHAxZ). Instructions for raising a zkEVM testnet support ticket are as follows:
 

@@ -28,7 +28,7 @@ To log into the **testnet version** of Polygon Wallet Suite, you need to access 
 Once you connect your account with the Web Wallet, you will be taken to the landing page with various means on how to transact with the web wallet. Polygon POS chain currently offers the following services:
 - The Polygon Wallet for sending, receiving and storing your assets on the Polygon network
 - the Polygon Bridge, for withdrawals and deposits across networks.
-- Polygon Staking: your go-to place for staking and getting rewards with your $MATIC
+- Polygon Staking: your go-to place for staking and getting rewards with your MATIC
 - and the Widget Dashboard.
 
 Click on the Polygon Wallet or Polygon Bridge, and you will see all your token balances on the Polygon Wallet across the bridges(PoS and Plasma).

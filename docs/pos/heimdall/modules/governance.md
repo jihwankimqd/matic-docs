@@ -2,36 +2,41 @@
 id: governance
 title: Governance
 sidebar_label: Governance
-description: "System with a 1 token - 1 vote basis."
+description: System with a 1 token - 1 vote basis
 keywords:
   - docs
   - matic
+  - one token
+  - one vote
+  - governance
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Overview
 
-Heimdall governance works exactly the same as Cosmos-sdk `x/gov` module. [https://docs.cosmos.network/master/modules/gov/](https://docs.cosmos.network/master/modules/gov/) 
+# Governance
 
-In this system, holders of the native staking token of the chain can vote on proposals on a `1 token = 1 vote` basis. Next is a list of features the module currently supports:
+Heimdall governance works exactly the same as [Cosmos-sdk `x/gov` module](https://docs.cosmos.network/master/modules/gov/).
+
+In this system, holders of the native staking token of the chain can vote on proposals on a `1 token = 1 vote` basis. Here is a list of features the module currently supports:
 
 - **Proposal submission:** Validators can submit proposals with a deposit. Once the minimum deposit is reached, proposal enters voting period. Valdiators that deposited on proposals can recover their deposits once the proposal is rejected or accepted.
-- **Vote:** Validators can vote on proposals that reached MinDeposit
+- **Vote:** Validators can vote on proposals that reached MinDeposit.
 
-There are deposit period and voting period as params in `gov` module. Minimum deposit has be achieved before deposit period ends, otherwise proposal will be automatically rejected. 
+There are deposit period and voting period as params in `gov` module. Minimum deposit has to be achieved before deposit period ends, otherwise proposal will be automatically rejected. 
 
 Once minimum deposits reached within deposit period, voting period starts. In voting period, all validators should vote their choices for the proposal. After voting period ends, `gov/Endblocker.go` executes `tally`  function and accepts or rejects proposal based on `tally_params` — `quorum`, `threshold` and `veto`. 
 
 Source: [https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go](https://github.com/maticnetwork/heimdall/blob/develop/gov/endblocker.go)
 
-There are different types of proposals that can be implemented in Heimdall but as of now, it supports only one proposal:
+There are different types of proposals that can be implemented in Heimdall. As of now, it supports only the **Param change proposal**.
 
-- Param change proposal
+### Param change proposal
 
-### **Param change proposal**
+Using this type of proposal, validators can change any `params` in any `module` of Heimdall.
 
-Using this type of proposal, validators can change any `params` in any `module` of Heimdall. Example: change minimum `tx_fees` for the transaction in `auth` module. When the proposal gets accepted, it automatically changes the `params` in Heimdall state. No extra TX is needed. 
+Example: change minimum `tx_fees` for the transaction in `auth` module. When the proposal gets accepted, it automatically changes the `params` in Heimdall state. No extra TX is needed. 
 
-## CLI commands
+## CLI Commands
 
 ### Query gov params
 
@@ -66,7 +71,7 @@ heimdallcli tx gov submit-proposal \
 
 `proposal.json` is a file which includes proposal in json format.
 
-```go
+```json
 {
   "title": "Auth Param Change",
   "description": "Update max tx gas",
@@ -88,13 +93,13 @@ heimdallcli tx gov submit-proposal \
 
 ### Query proposal
 
-To query all proposals
+To query all proposals:
 
 ```go
 heimdallcli query gov proposals --trust-node
 ```
 
-To query particular proposal
+To query a particular proposal:
 
 ```go
 heimdallcli query gov proposals 1 --trust-node
@@ -102,7 +107,7 @@ heimdallcli query gov proposals 1 --trust-node
 
 ### Vote on proposal
 
-To vote on a particular proposal 
+To vote on a particular proposal:
 
 ```bash
 heimdallcli tx gov vote 1 "Yes" --validator-id 1  --chain-id <heimdal-chain-id>

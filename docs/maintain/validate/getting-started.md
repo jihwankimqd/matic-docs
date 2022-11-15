@@ -9,9 +9,18 @@ keywords:
   - validator
   - maintain
   - architecture
+  - Validator Index
 slug: validator-index
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
+
+# Validator Index
+
+:::tip Stay in the know
+
+Keep up with the latest node and validator updates from the Polygon team and the community by subscribing to the [Polygon notification groups](https://polygon.technology/notifications/).
+
+:::
 
 Validators are the key actor in maintaining the Polygon network. Validators run a full node and secure 
 the network by staking MATIC to produce blocks, validate and participate in PoS consensus.
@@ -21,14 +30,6 @@ the network by staking MATIC to produce blocks, validate and participate in PoS 
 There is limited space for accepting new validators. New validators can only join the active set when a currently active validator unbonds.
 
 A new auction process for validator replacement will be rolled out.
-
-:::
-
-:::tip Stay in the know
-
-Keep up with the latest node and validator updates from the Polygon 
-team and the community by subscribing to the 
-[Polygon notification groups](https://polygon.technology/notifications/).
 
 :::
 
@@ -58,9 +59,7 @@ Heimdall does the following:
 
 Heimdall is based on Tendermint.
 
-:::note
-
-See also:
+:::note See Also
 
 * GitHub repository: [Heimdall](https://github.com/maticnetwork/heimdall)
 * GitHub repository: [Staking contracts](https://github.com/maticnetwork/contracts/tree/master/contracts/staking)
@@ -74,13 +73,9 @@ Bor does the following:
 
 * Produces blocks on the Polygon Network.
 
-Bor is based on Go Ethereum.
+Bor is the Block producer node and layer for the Polygon Network. It is based on Go Ethereum. Blocks produced on Bor are validated by Heimdall nodes.
 
-Bor is the Block producer node and layer for the Polygon Network. Blocks produced on Bor are validated by Heimdall nodes.
-
-:::note
-
-See also:
+:::note See Also
 
 * GitHub repository: [Bor](https://github.com/maticnetwork/bor)
 * Blog post: [Heimdall and Bor](https://blog.polygon.technology/heimdall-and-bor/)

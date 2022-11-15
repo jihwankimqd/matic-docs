@@ -11,8 +11,9 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Beginner Examples**
-## **State Machine that Multiplies Two Numbers**
+# Beginner Examples
+
+## State Machine that Multiplies Two Numbers
 
 Consider a state machine that takes two input numbers $x$ and $y$, and multiplies them. Hence call the state machine, the _Multiplier_ state machine, described by the function;
 
@@ -79,7 +80,7 @@ In PIL, the optimized Multiplier is implemented as follows,
 
 ![Optimised Multiplier State Machine](figures/fig8cd-optmsd-mltpl-sm.png)
 
-## **State Machine that Generates 4-Byte Numbers**
+## State Machine that Generates 4-Byte Numbers
 
 Now, let's consider building a state machine that takes two $2$-byte numbers and generates a $4$-byte number from them. Since the logic of this state machine is similar to the previous one, the number of polynomials (and its meaning) is also the same.
 

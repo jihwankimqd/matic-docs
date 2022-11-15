@@ -1,29 +1,28 @@
 ---
 id: checkpoint
 title: Checkpoint
-description: "Module that manages checkpoint-related functionalities."
+description: Module that manages checkpoint-related functionalities
 keywords:
   - docs
   - matic
+  - checkpoint
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Overview
+# Checkpoint
 
 `checkpoint` module manages checkpoint related functionalities for Heimdall. It needs Bor chain when a new checkpoint is proposed on Heimdall to verify checkpoint root hash.
 
-All related to checkpoint data is explained in details here: 
-
-[Checkpoint](/docs/pos/heimdall/checkpoint)
+All related to checkpoint data is explained in details [here](/docs/pos/heimdall/checkpoint).
 
 ## Checkpoint life-cycle
 
-The following flow chart represents the life cycle of the checkpoint. Heimdall uses the same leader selection algorithm as Tendermint to select the next proposer.
+Heimdall uses the same leader selection algorithm as Tendermint to select the next proposer. While submitting checkpoints on the Ethereum chain, it may fail due to multiple reasons like gas limit, traffic on Ethereum, high gas fees. That's why the multi-stage checkpoint process is required.
 
-**While submitting checkpoints on the Ethereum chain, it may fail due to multiple reasons like gas limit, traffic on Ethereum, high gas fees. That's why the multi-stage checkpoint process is required.**
-
-Since each checkpoint has validator as proposer. If checkpoint on Ethereum chain fails or succeeds, `ack` and `no-ack` transaction would change the proposer on Heimdall for next checkpoint.
+Each checkpoint has validator as proposer. If checkpoint on Ethereum chain fails or succeeds, `ack` and `no-ack` transaction would change the proposer on Heimdall for next checkpoint. The following flow chart represents the life cycle of the checkpoint:
 
 <img src={useBaseUrl("img/checkpoint/checkpoint-flowchart.svg")} />
 
@@ -33,7 +32,7 @@ Since each checkpoint has validator as proposer. If checkpoint on Ethereum chain
 
 ### MsgCheckpoint
 
-`MsgCheckpoint` handles checkpoint verification on Heimdall. **Only this message uses RLP encoding to since it needs to be verified on Ethereum chain.**
+`MsgCheckpoint` handles checkpoint verification on Heimdall. Only this message uses RLP encoding as it needs to be verified on Ethereum chain.
 
 ```go
 // MsgCheckpoint represents checkpoint transaction
@@ -66,7 +65,7 @@ This transaction will store proposed checkpoint on `checkpointBuffer` state inst
 
 ### MsgCheckpointAck
 
-`MsgCheckpointAck` handles successful checkpoint submission. Here `HeaderBlock` is a checkpoint counter.
+`MsgCheckpointAck` handles successful checkpoint submission. Here `HeaderBlock` is a checkpoint counter;
 
 ```go
 // MsgCheckpointAck represents checkpoint ack transaction if checkpoint is successful
@@ -91,7 +90,7 @@ event NewHeaderBlock(
 );
 ```
 
-On successful event verification, it updates the actual count of checkpoint, also known as `ackCount` and clears the `checkpointBuffer`
+On successful event verification, it updates the actual count of checkpoint, also known as `ackCount` and clears the `checkpointBuffer`.
 
 ### MsgCheckpointNoAck
 
@@ -109,7 +108,7 @@ type MsgCheckpointNoAck struct {
 
 This transaction gives the timeout period for the current proposer to send checkpoint/ack before Heimdall chooses a new `proposer` for the next checkpoint.
 
-## **Parameters**
+## Parameters
 
 The checkpoint module contains the following parameters:
 
@@ -118,23 +117,23 @@ The checkpoint module contains the following parameters:
 |CheckpointBufferTime  |uint64|1000 * time.Second|
 
 
-## CLI commands
+## CLI Commands
 
 ### Params
 
-To print all params 
+To print all params:
 
 ```go
 heimdallcli query checkpoint params --trust-node
 ```
 
-**Expected Result:**
+Expected Result:
 
 ```yaml
 checkpoint_buffer_time: 16m40s
 ```
 
-### Send checkpoint
+### Send Checkpoint
 
 Following command sends checkpoint transaction on Heimdall:
 
@@ -147,7 +146,7 @@ heimdallcli tx checkpoint send-checkpoint \
 	--chain-id=<chain-id>
 ```
 
-### Send ack
+### Send `ack`
 
 Following command sends ack transaction on Heimdall if checkpoint is successful on Ethereum:
 
@@ -159,7 +158,7 @@ heimdallcli tx checkpoint send-ack \
   --chain-id=<chain-id>
 ```
 
-### Send no-ack
+### Send `no-ack`
 
 Following command send no-ack transaction on Heimdall:
 
@@ -182,7 +181,7 @@ heimdallcli tx checkpoint send-noack --chain-id <chain-id>
 |Get ack count, buffer, validator set, validator count and last-no-ack details|GET   |/overview         |
 
 
-All query APIs will result in following format:
+All query APIs will provide result in following format:
 
 ```json
 {

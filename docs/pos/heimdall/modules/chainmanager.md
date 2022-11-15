@@ -1,17 +1,21 @@
 ---
 id: chainmanager
 title: Chain Manager
-description: "Module that provides all necessary dependencies."
+description: Module that provides all necessary dependencies
 keywords:
   - docs
   - matic
+  - chain manager
+  - module
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Overview
 
-This document specifies an overview of the chain manager module of Heimdall
+# Chain Manager
 
-This module provides all necessary dependencies like `contract-addresses`, `bor_chain_id,` and `tx_confirmation_time`. Other parameters can be added to this later on.
+This document specifies an overview of the chain manager module of Heimdall.
+
+The **chain manager** module provides all necessary dependencies like `contract-addresses`, `bor_chain_id,` and `tx_confirmation_time`. Other parameters can be added to this later on.
 
 Params are updated through the `gov` module.
 
@@ -48,11 +52,11 @@ type ChainParams struct {
 }
 ```
 
-## CLI commands
+## CLI Commands
 
-### params
+### Parameters
 
-To print all params
+To print all params;
 
 ```go
 heimdallcli query chainmanager params --trust-node
@@ -79,8 +83,7 @@ chain_params:
 |----------------------|------|------------------|
 |Params                |GET   |chainmanager/params|
 
-
-All query APIs will result in the following format:
+All query APIs will provide response in the following format:
 
 ```json
 {

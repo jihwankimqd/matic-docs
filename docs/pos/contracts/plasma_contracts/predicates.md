@@ -1,23 +1,29 @@
 ---
 id: predicates
 title: Predicates in Polygon Plasma
-description: "Implementation details of our predicate design."
+description: Implementation details of Predicates in Polygon Plasma
 keywords:
   - docs
   - matic
+  - polygon
+  - plasma
+  - predicates
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
+
+# Predicates in Polygon Plasma
+
 This article highlights the implementation details of our predicate design. Our predicate design is heavily inspired from [Understanding the Generalized Plasma Architecture](https://medium.com/plasma-group/plapps-and-predicates-understanding-the-generalized-plasma-architecture-fc171b25741) and we thank the plasma group for the same. We recently published our [Account based MoreVP](https://ethresear.ch/t/account-based-plasma-morevp/5480) specification. The linked post is a pre-requisite to understanding this document.
 
 Note: `withdrawManager` is our term for what plasma group calls the *commitment contract*.
 
-### Predicate for ERC20/721 token transfer
+## Predicate for ERC20/721 token transfer
 
 The most relevant functions in the ERC20/721 predicates are `startExit` and `verifyDeprecation`. See [IPredicate.sol 5](https://github.com/maticnetwork/contracts/blob/master/contracts/root/predicates/IPredicate.sol).
 
 The `startExit` function will be invoked when an exitor wants to start a MoreVP style exit (referencing the preceding reference transactions).
 
-```
+```solidity
 function startExit(bytes calldata data, bytes calldata exitTx) external {
   referenceTxData = decode(data)
 
@@ -37,12 +43,11 @@ function startExit(bytes calldata data, bytes calldata exitTx) external {
 
   withdrawManager.addExitToQueue(msg.sender, token, exitAmount, priority)
 }
-
 ```
 
 For challenging older state transitions, the predicate exposes `verifyDeprecation` function.
 
-```
+```solidity
 function verifyDeprecation(bytes calldata exit, bytes calldata challengeData) external returns (bool) {
   referenceTxData = decode(challengeData)
 
@@ -53,12 +58,11 @@ function verifyDeprecation(bytes calldata exit, bytes calldata challengeData) ex
 
   return priorityOfChallengeTx > exit.priority
 }
-
 ```
 
 Finally, the `challengeExit` function in `withdrawManager` is responsible for calling `predicate.verifyDeprecation` and cancel the exit if it returns true. See [WithdrawManager.sol](https://github.com/maticnetwork/contracts/blob/master/contracts/root/withdrawManager/WithdrawManager.sol#L184).
 
-```
+```solidity
 function challengeExit(uint256 exitId, uint256 inputId, bytes calldata challengeData) external {
   PlasmaExit storage exit = exits[exitId];
   Input storage input = exit.inputs[inputId];
@@ -76,7 +80,6 @@ function challengeExit(uint256 exitId, uint256 inputId, bytes calldata challenge
     emit ExitCancelled(exitId);
   }
 }
-
 ```
 
 While this makes up the crux of our [ERC20Predicate.sol](https://github.com/maticnetwork/contracts/blob/master/contracts/root/predicates/ERC20Predicate.sol) logic, the actual implementation is much more involved and can be found in this [pull request 12](https://github.com/maticnetwork/contracts/pull/78). We invite the plasma community to review the same and leave their precious feedback here or on the PR.

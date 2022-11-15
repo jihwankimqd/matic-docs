@@ -1,12 +1,17 @@
 ---
 id: new-to-polygon
-title: New to Polygon?
-description: Build your next blockchain app on Polygon.
+title: Welcome to Polygon
+description: Build your next blockchain app on Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - new to polygon
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Welcome to Polygon
+
 Polygon is a scaling solution for public blockchains. Polygon PoS supports all the existing Ethereum tooling along with faster and cheaper transactions.
 
 ## Types of Interaction on Polygon
@@ -19,12 +24,9 @@ Polygon is a scaling solution for public blockchains. Polygon PoS supports all t
 
 Most blockchain interactions involve reading its state.
 
-Alchemy offers a reference guide on how to make basic requests to the blockchain.
-Check out their guide on [how  to query Polygon](https://docs.alchemy.com/reference/polygon-sdk-examples).
+Alchemy offers a reference guide on how to make basic requests to the blockchain. Check out their guide on [how to query Polygon](https://docs.alchemy.com/reference/polygon-sdk-examples).
 
 ## Deploy Smart Contracts
-
-<!-- ### Are you an Experience Blockchain Developer? -->
 
 * Deploy your Contracts on Polygon
     - [Using Alchemy](/docs/develop/alchemy)
@@ -35,13 +37,17 @@ Check out their guide on [how  to query Polygon](https://docs.alchemy.com/refere
     - [Using Hardhat](/docs/develop/hardhat)
 
 :::note
-Configure the Web3 RPC-URL to https://rpc-mumbai.matic.today, *Everything else remains the same.*
+
+Configure the Web3 RPC-URL to "https://rpc-mumbai.matic.today", everything else remains the same.
+
 :::
 
 ## What is a Blockchain?
+
 Simply put, Blockchain is a shared, immutable ledger for recording transactions, tracking assets and building trust. Head over to [Blockchain Basics](blockchain-basics/basics-blockchain.md) to read more.
 
 ## What is a Sidechain?
+
 Think of a Sidechain as a clone of a 'parent' blockchain, supporting transfer of assets to and from the main chain. It is simply an alternate to parent chain that creates a new blockchain with its own mechanism of creating blocks (consensus mechanism). Connecting a sidechain to a parent chain involves setting up a method of moving assets between the chains.
 
 ## Validator and delegator roles
@@ -73,7 +79,7 @@ To have a granular understanding of the core components, see the codebases:
 * [Bor](https://github.com/maticnetwork/bor)
 * [Contracts](https://github.com/maticnetwork/contracts)
 
-## How-tos
+## How-Tos
 
 ### Node setup
 
@@ -86,5 +92,5 @@ To have a granular understanding of the core components, see the codebases:
 * [Delegate](/docs/maintain/delegate/delegate)
 
 ### External Resources
-- [Your first DApp](https://www.youtube.com/watch?v=rzvk2kdjr2I)
+- [Your first dApp](https://www.youtube.com/watch?v=rzvk2kdjr2I)
 - [Sidechains and Childchains](https://hackernoon.com/what-are-sidechains-and-childchains-7202cc9e5994)

@@ -15,9 +15,9 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Basic Syntax**
+# Basic Syntax
 
-## **Overview**
+## Overview
 This section is devoted to explain the basic syntax of zkASM from a high-level perspective. Advanced syntax is totally dependendant on the use case (e.g. the design of a zkEVM) and will be explained in more detail with more complete examples later on.
 
 :::info
@@ -28,7 +28,7 @@ Instructions are depicted line by line and are divided in two parts. The left-si
 
 :::
 
-## **Comments and Modules**
+## Comments and Modules
 
 Comments are made with the semicolon "$;$" symbol.
 
@@ -48,7 +48,7 @@ INCLUDE "constants.zkasm"
 ; -- code --
 ```
 
-## **Storing Values on Registers**
+## Storing Values on Registers
 
 There are many ways in which values can be stored into registers:
 
@@ -84,7 +84,7 @@ There are many ways in which values can be stored into registers:
         ${A >> 2} => B
         ${A & 0x03} => C
 
-## **Introducing Opcodes**
+## Introducing Opcodes
 
 Until this point, every instruction consisted of a direct interaction with the registers. Now, we move one step forward and we create interaction with other parts of the ROM, thanks to the introduction of zkEVM Opcodes.
 
@@ -127,7 +127,7 @@ It is also common to encounter negative jumps to check appropiate situations, in
 SP - 2  :JMPN(stackUnderflow)
 ```
 
-## **Code Injection**
+## Code Injection
 
 Inline javascript-based instruction can be injected in plain by using the double dollar "$" symbol.
 
@@ -137,7 +137,7 @@ $${CODE}
 
 The main difference between the single dollar sign and the double dollar sign is that while the methods inside the single dollar sign come from the Executor, the double dollar ones do not. It's a plain javascript code that is executed by the ROM.
 
-## **Asserts**
+## Asserts
 
 Asserts work by comparing what is being asserted with the value on register `A`. For instance, the following instructions compares the value inside register `B` with the value inside register `A`:
 

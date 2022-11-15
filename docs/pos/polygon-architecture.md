@@ -1,26 +1,29 @@
 ---
 id: polygon-architecture
-title: Overview
-description: The architecture of Polygon
+title: The Architecture of Polygon
+description: The Architecture of Polygon
 keywords:
   - architecture
   - layers
   - polygon
+  - matic
+  - docs
+  - research
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Polygon
+# The Architecture of Polygon
 
-Polygon is a blockchain application platform that provides hybrid Proof-of-Stake and Plasma-enabled sidechains.
+**Polygon** is a blockchain application platform that provides hybrid Proof-of-Stake and Plasma-enabled sidechains.
 
 Architecturally, the beauty of Polygon is its elegant design, which features a generic validation layer separated from varying execution environments like Plasma enabled chains, full-blown EVM sidechains, and in the future, other Layer 2 approaches such as Optimistic Rollups.
 
 The Polygon PoS Network has a three-layer architecture:
 
-* Ethereum layer — a set of contracts on the Ethereum mainnet.
-* Heimdall layer — a set of proof-of-stake Heimdall nodes running parallel to the Ethereum mainnet, monitoring the set of staking contracts deployed on the Ethereum mainnet and committing the Polygon Network checkpoints to the Ethereum mainnet. Heimdall is based on Tendermint.
-* Bor layer — a set of block-producing Bor nodes shuffled by Heimdall nodes. Bor is based on Go Ethereum.
+* **Ethereum layer** — a set of contracts on the Ethereum mainnet.
+* **Heimdall layer** — a set of proof-of-stake Heimdall nodes running parallel to the Ethereum mainnet, monitoring the set of staking contracts deployed on the Ethereum mainnet and committing the Polygon Network checkpoints to the Ethereum mainnet. Heimdall is based on Tendermint.
+* **Bor layer** — a set of block-producing Bor nodes shuffled by Heimdall nodes. Bor is based on Go Ethereum.
 
 <img src={useBaseUrl("img/staking/architecture.png")} />
 
@@ -72,7 +75,7 @@ An overview of the process:
 
 More details on Heimdall are available on the [Heimdall architecture](/docs/pos/heimdall/overview) guide.
 
-### Bor
+## Bor
 
 Bor is Polygon's sidechain block producer layer - the entity responsible for aggregating transactions into blocks.  Currently, it is a basic Geth implementation with custom changes done to the consensus algorithm.
 
@@ -83,7 +86,7 @@ the Merkle tree hash of a set of blocks on Bor is committed to Ethereum periodic
 
 More details are available on the [Bor architecture](/docs/pos/bor/overview) guide.
 
-### Resources
+## Resources
 
 * [Bor Architecture](https://wiki.polygon.technology/docs/pos/bor)
 * [Heimdall Architecture](https://forum.polygon.technology/t/matic-system-overview-heimdall/8323)

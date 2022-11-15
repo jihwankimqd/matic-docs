@@ -1,7 +1,7 @@
 ---
 id: run-validator-binaries
 title: Run a Validator Node from Binaries
-description: "Use binaries to set up your validator node."
+description: Use binaries to set up your validator node
 keywords:
   - docs
   - matic
@@ -15,9 +15,11 @@ image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+# Run a Validator Node from Binaries
+
 :::tip
 Steps in this guide involve waiting for the **Heimdall** and **Bor** services to fully sync.
-This process takes several days to complete. Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](../../develop/network-details/snapshot-instructions-heimdall-bor).
+This process takes several days to complete. Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor).
 
 For snapshot download links, see [Polygon Chains Snapshots](https://snapshots.matic.today/).
 
@@ -27,15 +29,13 @@ There is limited space for accepting new validators. New validators can only joi
 
 This guide will walk you through running a Polygon validator node from binaries.
 
-For system requirements,
-follow the [Validator Node System Requirements](validator-node-system-requirements.md) guide.
+For system requirements, follow the [Validator Node System Requirements](validator-node-system-requirements.md) guide.
 
-If you would like to start and run the validator node through Ansible,
-see [Run a Validator Node with Ansible](run-validator-ansible.md).
+If you would like to start and run the validator node through Ansible, see [Run a Validator Node with Ansible](run-validator-ansible.md).
 
 ## Prerequisites
 
-* Two machines — one [sentry](../glossary#sentry) and one [validator](../glossary#validator).
+* Two machines — one [sentry](/docs/maintain/glossary#sentry) and one [validator](/docs/maintain/glossary#validator).
 * `build-essential` installed on both the sentry and the validator machines.
 
   To install:

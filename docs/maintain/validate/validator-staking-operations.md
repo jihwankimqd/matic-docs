@@ -14,22 +14,20 @@ image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+# Stake on Polygon
+
 ## Prerequisites
 
 ### Full node set up
 
-Your validator node fully set up and synced.
-
-See:
+Your validator node fully set up and synced. See also:
 
 * [Run a Validator Node with Ansible](run-validator-ansible)
 * [Run a Validator Node from Binaries](run-validator-binaries)
 
 ### Account setup
 
-On your validator node, check that the account is set up.
-
-To check, run the following command **on the validator node**:
+On your validator node, check that the account is set up. To check, run the following command **on the validator node**:
 
 ```sh
     heimdalld show-account
@@ -44,15 +42,13 @@ Your output should appear in the following format:
 }
 ```
 
-This will display your address and public key for your validator node. **Note that this address must match with your signer address on Ethereum.**
+This will display your address and public key for your validator node. Note that **this address must match with your signer address on Ethereum**.
 
 ### Show private key
 
 This step is optional.
 
-On your validator node, check that the private key is correct.
-
-To check, run the following command **on the validator node**:
+On your validator node, check that the private key is correct. To check, run the following command **on the validator node**:
 
 ```sh
 heimdalld show-privatekey
@@ -73,16 +69,10 @@ You can stake on Polygon using the [validator dashboard](https://staking.polygon
 ### Stake using the staking dashboard
 
 1. Access the [validator dashboard](https://staking.polygon.technology/validators/).
-1. Log in with your wallet. MetaMask is the recommended wallet.
-
-   You have to make sure that you login using the same address where your MATIC tokens are present.
-
-1. Click **Become a Validator**
-
-   You will be asked to set up your node. If you haven't already set up your node by now, you will need to do so, else if you proceed ahead you will receive an error when you attempt to stake.
-
-1. On the next screen, add your validator details, the commission rate, and the staking amount.
-1. Click **Stake Now**.
+2. Log in with your wallet. MetaMask is the recommended wallet. You have to make sure that you login using the same address where your MATIC tokens are present.
+3. Click **Become a Validator**. You will be asked to set up your node. If you haven't already set up your node by now, you will need to do so, else if you proceed ahead you will receive an error when you attempt to stake.
+4. On the next screen, add your validator details, the commission rate, and the staking amount.
+5. Click **Stake Now**.
 
 Once the transaction is completed you will have staked successfully to become a validator. You will be asked thrice to confirm the transaction.
 
@@ -106,7 +96,7 @@ heimdallcli query auth account SIGNER_ADDRESS --chain-id CHAIN_ID
 
 where
 
-* SIGNER_ADDRESS — your [signer address](../glossary#validator).
+* SIGNER_ADDRESS — your [signer address](/docs/maintain/glossary#validator).
 * CHAIN_ID — the Polygon mainnet chain ID with the client prefix: `heimdall-137`.
 
 The following output should appear:

@@ -6,12 +6,15 @@ description: "Compendium of useful examples."
 keywords:
   - docs
   - polygon
+  - zkASM
+  - zkEVM
+  - examples
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Some Examples**
+# Some Examples
 
-## **EVM ADD**
+## EVM ADD
 
 Let's take the EVM ADD opcode as our first starting example:
 

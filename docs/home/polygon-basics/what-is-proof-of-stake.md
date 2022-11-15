@@ -1,7 +1,7 @@
 ---
 id: what-is-proof-of-stake
 title: What is Proof of Stake?
-description: "A consensus algorithm reliant to validators."
+description: A consensus algorithm reliant to validators.
 keywords:
   - docs
   - matic
@@ -10,8 +10,10 @@ keywords:
   - delegate
   - validate
   - pos
-image: https://matic.network/banners/matic-network-16x9.png 
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Proof of Stake (PoS)
 
 Proof of Stake (PoS) is a category of consensus algorithms for public blockchains that depend on a validator's economic [stake](/docs/maintain/glossary#staking) in the network.
 

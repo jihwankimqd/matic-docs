@@ -1,13 +1,19 @@
 ---
 id: core_concepts
 title: Core Concepts
-description: "Bor is state chain in Polygon architecture."
+description: Bor is state chain in Polygon architecture
 keywords:
   - docs
   - matic
+  - Core Concepts
+  - polygon
+  - state chain
+  - architecture
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Core Concepts
 
 Bor is state chain in Polygon architecture. It is a fork of Geth [https://github.com/ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) with new consensus called Bor.
 
@@ -15,17 +21,15 @@ Source: [https://github.com/maticnetwork/bor](https://github.com/maticnetwork/bo
 
 ## Consensus
 
-Bor uses new improved consensus, inspired by Clique consensus  [https://eips.ethereum.org/EIPS/eip-225](https://eips.ethereum.org/EIPS/eip-225)
+Bor uses new improved consensus, inspired by [Clique consensus](https://eips.ethereum.org/EIPS/eip-225)
 
-More details on consensus and specifications: 
-
-[Bor Consensus](https://www.notion.so/Bor-Consensus-5e52461f01ef4291bc1caad9ab8419c5)
+More details on consensus and specifications: [Bor Consensus](https://www.notion.so/Bor-Consensus-5e52461f01ef4291bc1caad9ab8419c5)
 
 ## Genesis
 
 The genesis block contains all the essential information to configure the network. It's basically the config file for Bor chain. To boot up Bor chain, the user needs to pass in the location of the file as a param.
 
-Bor uses `genesis.json` as Genesis block and params.  Here is an example for Bor genesis `config`
+Bor uses `genesis.json` as Genesis block and params.  Here is an example for Bor genesis `config`:
 
 ```json
 "config": {
@@ -55,9 +59,9 @@ Bor uses `genesis.json` as Genesis block and params.  Here is an example for Bor
 
 Bor uses un-modified EVM as a VM for a transaction. Developers can deploy any contract they wish using the same Ethereum tools and compiler like `solc` without any changes.
 
-## Matic as Native token (Gas token)
+## MATIC as Native token (Gas token)
 
-Bor has a Matic token as a native token similar to ETH in Ethereum. It is often called the gas token. This token works correctly as to how ETH works currently on the Ethereum chain.
+Bor has a MATIC token as a native token similar to ETH in Ethereum. It is often called the gas token. This token works correctly as to how ETH works currently on the Ethereum chain.
 
 In addition to that, Bor provides an in-built wrapped ERC20 token for the native token (similar to WETH token), which means applications can use wrapped MATIC ERC20 token in their applications without creating their own wrapped ERC20 version of the Matic native token.
 
@@ -108,9 +112,9 @@ event LogTransfer(
 );
 ```
 
-Since Matic token is Native token and doesn't have Native ERC20 token, Bor adds receipt log for each transfer made for Native token using following Golang code. Source: [https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252](https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252)
+Since, MATIC token is the native token and doesn't have Native ERC20 token, Bor adds receipt log for each transfer made for Native token using following Golang code. Source: [https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252](https://github.com/maticnetwork/bor/blob/develop/core/state_transition.go#L241-L252)
 
-```jsx
+```go
 // addTransferLog adds transfer log into state
 func addTransferLog(
 	state vm.StateDB,
@@ -159,7 +163,7 @@ func addTransferLog(
 
 ### Deposit native token
 
-A user can receive Native token by depositing Matic tokens on Ethereum main-chain to `DepositManager` contract (deployed on Ethereum chain). Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68)
+A user can receive native token by depositing MATIC tokens on Ethereum main-chain to `DepositManager` contract (deployed on Ethereum chain). Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/depositManager/DepositManager.sol#L68)
 
 ```jsx
 /**
@@ -204,7 +208,7 @@ Genesis contract is defined in `genesis.json`. When bor starts at block 0, it lo
 }
 ```
 
-Here are details for each genesis contract:
+Below are the details for each genesis contract.
 
 ### Bor validator set
 
@@ -329,15 +333,15 @@ contract StateReceiver {
 
 `commitState` is being called through the [system call](https://www.notion.so/maticnetwork/Overview-c8bdb110cd4d4090a7e1589ac1006bab#bba582b9e9c441d983aeec851b9421f9). 
 
-### Matic ERC20 token
+### MATIC ERC20 token
 
 Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/child/MaticChildERC20.sol)
 
 Deployed at: `0x0000000000000000000000000000000000001010`
 
-This is special contact that wraps Native coin (like ETH in Ethereum) and provides an ERC20 token interface. Example: `transfer` on this contract transfer Native coins. `withdraw` method in ERC20 token allows users to move their tokens from Bor to Ethereum chain.
+This is special contract that wraps native coin (like $ETH in Ethereum) and provides an ERC20 token interface. Example: `transfer` on this contract transfers native tokens. `withdraw` method in ERC20 token allows users to move their tokens from Bor to Ethereum chain.
 
-Note: This contract doesn't support `allowance`. This is same for every plasma compatible ERC20 token contracts.
+Note: This contract doesn't support `allowance`. This is same for every plasma compatible ERC20 token contract.
 
 ```jsx
 contract MaticChildERC20 is BaseERC20 {
@@ -418,7 +422,7 @@ contract MaticChildERC20 is BaseERC20 {
 }
 ```
 
-## System call
+## System Call
 
 Only system address, `2^160-2`, allows making a system call. Bor calls it internally with the system address as `msg.sender`. It changes the contract state and updates the state root for a particular block. Inspired from [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) and [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
 
@@ -426,17 +430,17 @@ System call is helpful to change state to contract without making any transactio
 
 Limitation: Currently events emitted by system call are not observable and not-included in any transaction or block. 
 
-## Span management
+## Span Management
 
 Span is a logically defined set of blocks for which a set of validators is chosen from among all the available validators. Heimdall will select the committee of producers out of all validators. The producers will include a subset of validators depending upon the number of validators in the system.
 
 <img src={useBaseUrl("img/Bor/span-management.svg")} />
 
-### Propose Span Tx
+### Propose Span Transaction
 
 Type: **Heimdall transaction**
 
-Source:  [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
+Source: [https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27](https://github.com/maticnetwork/heimdall/blob/develop/bor/handler.go#L27)
 
 `spanProposeTx` sets validators’ committee for a given `span` in case of successful transaction inclusion. One transaction for each span must be included in Heimdall. It is called `spanProposeTx` on Heimdall. `spanProposeTx` must revert if being sent frequently or there is no less than 33% stake change occurred within the current committee (for, given `span`).
 
@@ -506,7 +510,7 @@ There are two way to commit span in Bor.
     Once the `span` proposed on Heimdall, the validator can force push span if span needs to be changed before the current span ends. A transaction to propose a `span` must be committed to Bor by any validator. Bor then updates and commits the proposed span at end of the current sprint using a system call.
 
 
-## State management (State-sync)
+## State Management (State-sync)
 
 State management sends the state from the Ethereum chain to Bor chain. It is called `state-sync`. This is a way to move data from the Ethereum chain to Bor chain.
 
@@ -556,7 +560,7 @@ After confirmation of a tx on Heimdall, a validator proposes `proposeState` on B
 
 During `commitState`, Bor executes `onStateReceive`, with `stateId` and `data` as args, on target contract.
 
-### State receiver interface
+### State Receiver Interface
 
 `receiver` contract on Bor chain must implement following interface.
 
@@ -569,7 +573,7 @@ interface IStateReceiver {
 
 Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract. 
 
-## Transaction speed
+## Transaction Speed
 
 Bor currently works as expected with ~2 to 4 seconds' block time with 100 validators and 4 block producers. After multiple stress testing with huge number of transactions, exact block time will be decided. 
 

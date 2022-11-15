@@ -215,13 +215,11 @@ one using the `subkey` tool in Substrate.
 
 :::note Learn about subkey
 
-To learn about how to use subkey, visit the
-[Subkey Substrate documentation](https://docs.substrate.io/v3/tools/subkey/).
+To learn about how to use subkey, visit the [Subkey Substrate documentation](https://docs.substrate.io/v3/tools/subkey/).
 
 :::
 
-This command should be **repeated for each pair of key type
-and scheme** shown in the following table:
+This command should be **repeated for each pair of key type and scheme** shown in the following table:
 
 | Key Type | Scheme    |
 | -------- | --------- |
@@ -232,14 +230,12 @@ and scheme** shown in the following table:
 
 ## Bond AVL tokens
 
-It is highly recommended that you set up a stash and controller account and have separate key
-(two separate accounts) for both.
+It is highly recommended that you set up a stash and controller account and have separate key (two separate accounts) for both.
 
 :::info Stash and Controller Keys
 
 - A controller key is used to control staking actions for your account
-- A stash key is used to control your funds. **It is recommended that the stash key be a cold wallet or offline
-  and not be used for account related activities like submitting extrinsics.
+- A stash key is used to control your funds. **It is recommended that the stash key be a cold wallet or offline and not be used for account related activities like submitting extrinsics.
 
 Follow the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-staking#accounts) and the
 [Substrate Hub](https://docs.substrate.io/v3/concepts/account-abstractions/#:~:text=Controller%20Key%3A%20a%20Controller%20account,somewhat%20regularly%20for%20validator%20maintenance)
@@ -250,7 +246,7 @@ to learn more about stash and controller accounts and how to manage them.
 You will start by creating two accounts; ensure each account has enough funds to pay the fees for
 making transactions.
 
-:::tip Storing funds
+:::tip Storing Funds
 
 Keep most of your funds in the stash account since it is meant to be the custodian of
 your staking funds, and have just enough funds in the controller account to pay for fees.

@@ -12,13 +12,13 @@ slug: validator-node-system-requirements
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
 
-## Overview
+# Node System Requirements
 
-The system requirements listed in this section are both for the [sentry](../glossary#sentry) node and the [validator](../glossary#validator) node.
+The system requirements listed in this section are both for the [sentry](/docs/maintain/glossary#sentry) node and the [validator](/docs/maintain/glossary#validator) node.
 
-The *minimum* system requirements mean you can run the nodes but the setup is not future-proof.
+The **minimum** system requirements mean you can run the nodes but the setup is not future-proof.
 
-The *recommended* system requirements mean the nodes are future-proof. There is, however, no upper limit to future-proofing your nodes.
+The **recommended** system requirements mean the nodes are future-proof. There is, however, no upper limit to future-proofing your nodes.
 
 You must always run the sentry node and the validator node on separate machines.
 
@@ -28,7 +28,7 @@ You must always run the sentry node and the validator node on separate machines.
 * CPU: 8-core
 * Storage: 2 TB SSD
 
-:::note
+:::info
 
 For Amazon Web Services (AWS), the equivalent of the minimum requirements instances are **m5d.2xlarge** or **t3.2xlarge** with unlimited credits selected.
 
@@ -43,7 +43,7 @@ For storage, make sure the 2 TB SSD storage is extendable.
 * Storage: 3-4 TB SSD
 * Bandwidth: 1 Gbit/s
 
-:::note
+:::info
 
 For Amazon Web Services (AWS), the equivalent of the recommended requirements instance is **m5d.4xlarge**.
 

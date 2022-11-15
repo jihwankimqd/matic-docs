@@ -5,32 +5,38 @@ sidebar_label: Delegator FAQ
 description: Build your next blockchain app on Polygon.
 keywords:
   - docs
-  - matic
+  - polygon
+  - how to delegate
+  - validator
+  - stake
+  - faq
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Delegator FAQ
 
 ### What is the Staking Dashboard URL?
 
 The staking dashboard URL is https://staking.polygon.technology/.
 
-### What is the Minimum stake amount?
+### What is the minimum stake amount?
 
-There is no minimum stake amount to delegate. However, you can always start with 1 Matic token
+There is no minimum stake amount to delegate. However, you can always start with 1 MATIC token.
 
 ### How many rewards will I get if I delegate?
 
-Please use the Staking Rewards Calculator to determine your estimates. https://staking.polygon.technology/rewards-calculator
+Please use the [Staking Rewards Calculator](https://staking.polygon.technology/rewards-calculator) to determine your estimates.
 
 ### Why does my transaction take so long?
 
 All staking transactions of Polygon happen on Ethereum for security reasons.
 
-The time taken to complete a transaction depends on the gas fees that you have allowed and also the network congestion of Ethereum mainnet at that point in time. You can always use the “Speed Up” option to increase the gas fees so that your transaction can be completed soon
+The time taken to complete a transaction depends on the gas fees that you have allowed and also the network congestion of Ethereum mainnet at that point in time. You can always use the “Speed Up” option to increase the gas fees so that your transaction can be completed soon.
 
 ### Which wallets are currently supported?
 
-Currently, only the Metamask extension on the desktop browser and Coinbase Wallet are supported. Additionally you can use WalletConnect and Walletlink from supported mobile wallets to interact with the Staking UI dashboard on desktop/laptop. We will be gradually adding support for other wallets soon.
+Currently, only the Metamask extension on the desktop browser and Coinbase Wallet are supported. Additionally you can use WalletConnect and Walletlink from supported mobile wallets to interact with the Staking UI dashboard on desktop / laptop. We will be gradually adding support for other wallets soon.
 
 ### Are hardware wallets supported?
 
@@ -42,7 +48,7 @@ Staking through Binance is not yet supported. There will be an announcement if a
 
 ### I have completed my delegation, where can I check details?
 
-Once you have completed your delegation, wait for 12 block confirmations on Ethereum (~3-5 minutes), then on the Dashboard,you can click on the “My Delegator Details” option on the left-hand side. Or you could also click on “Show Delegator Profile” card
+Once you have completed your delegation, wait for 12 block confirmations on Ethereum (~3-5 minutes), then on the Dashboard,you can click on the “My Delegator Details” option on the left-hand side. Or you could also click on “Show Delegator Profile” card.
 
 ### Where can I check my rewards?
 
@@ -72,7 +78,7 @@ Currently 20188 Matic tokens are distributed proportionately on each successful 
 
 The checkpoint submission is done by one of the validators approximately every 34 minutes. This time is approximate and may vary based on validator consensus on the Polygon Heimdall layer. This may also vary based on Ethereum Network. Higher congestion in the network may result in delayed checkpoints.
 
-You can track checkpoints on the staking contract here: https://etherscan.io/address/0x86e4dc95c7fbdbf52e33d563bbdb00823894c287
+You can track checkpoints on the staking contract [here](https://etherscan.io/address/0x86e4dc95c7fbdbf52e33d563bbdb00823894c287)
 
 ### Why does reward keep getting decreased every checkpoint?
 
@@ -143,11 +149,11 @@ In case you dont want that to happen, re-delegate your rewards before delegating
 
 No. Once your Delegation transactions are confirmed, and you can see your tokens reflected in the Total Stake and New Reward cards/sections, then you are done. There is no need to keep your system or device on.
 
-### I have unbonded, how long will it take to Unbond
+### I have unbonded, how long will it take to Unbond?
 
 The unbonding period is currently set to 82 checkpoints. This is approximately 9 days. Every checkpoint takes approximately 34 minutes. However, some checkpoints could be delayed upto ~1 hour due to congestion on Ethereum.
 
-### I have unbonded, and I now see the Claim Stake button, but it is disabled, why is that
+### I have unbonded, and I now see the Claim Stake button, but it is disabled, why is that?
 
 The Claim stake button will only be enabled when your unbonding period is complete. The unbonding period is currently set at 82 checkpoints.
 
@@ -202,7 +208,6 @@ The foundation nodes will be turned by the end of January, 2021
 ### Will there be any Foundation nodes in the future?
 
 No, there won't be any foundation nodes in the future.
-
 
 ### How many transactions do I need to pay for Gas when I do a Move Stake?
 

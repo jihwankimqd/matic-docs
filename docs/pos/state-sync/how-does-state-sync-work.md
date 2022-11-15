@@ -5,15 +5,18 @@ description: "Sending the state from the Ethereum chain to the Bor chain."
 keywords:
   - docs
   - matic
+  - state sync
+  - working
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-State management sends the state from the Ethereum chain to the Bor chain. It is called state-sync.
 
-State transfer from Ethereum to Bor happens through system call. 
+# How does State Sync work?
 
-For example, a user deposits USDC to the deposit manager on Ethereum, validators listen to those events and validates and store them in Heimdall state. Bor gets the latest state-sync records and updates the Bor state (mints equal amount of USDC on Bor) using a system call. 
+State management sends the state from the Ethereum chain to the Bor chain. It is called **state-sync**.
 
-**State sender**
+State transfer from Ethereum to Bor happens through system call. Suppose, a user deposits USDC to the deposit manager on Ethereum. Validators listen to those events, validate, and store them in Heimdall state. Bor gets the latest state-sync records and updates the Bor state (mints equal amount of USDC on Bor) using a system call. 
+
+## State sender
 
 Source: [https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol)
 
@@ -55,7 +58,7 @@ After every sprint (currently 64 blocks on Bor), Bor fetches new state-sync reco
 
 During `commitState`, Bor executes `onStateReceive`, with `stateId` and `data` as args, on target contract.
 
-**State receiver interface on Bor**
+## State receiver interface on Bor
 
 `receiver` contract on Bor chain must implement following interface.
 
@@ -68,20 +71,20 @@ interface IStateReceiver {
 
 Only `0x0000000000000000000000000000000000001001` — `StateReceiver.sol`, must be allowed to call `onStateReceive` function on target contract.
 
-## System call
+## System Call
 
 Only system address, `2^160-2`, allows making a system call. Bor calls it internally with the system address as `msg.sender`. It changes the contract state and updates the state root for a particular block. Inspired from [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-210.md) and [https://wiki.parity.io/Validator-Set#contracts](https://wiki.parity.io/Validator-Set#contracts)
 
 System call is helpful to change state to contract without making any transaction.
 
-### State-sync logs and Bor Block Receipt
+## State-sync logs and Bor Block Receipt
 
-Events emitted by system calls are handled in a different way than normal logs. Here is code: [https://github.com/maticnetwork/bor/pull/90](https://github.com/maticnetwork/bor/pull/90)
+Events emitted by system calls are handled in a different way than normal logs. Here is the code: [https://github.com/maticnetwork/bor/pull/90](https://github.com/maticnetwork/bor/pull/90).
 
-Bor produces a new tx/receipt just for the client and includes all logs for state-sync in it. Tx hash is derived from block number and block hash (last block at that sprint):
+Bor produces a new tx / receipt just for the client which includes all the logs for state-sync. Tx hash is derived from block number and block hash (last block at that sprint):
 
 ```jsx
 keccak256("matic-bor-receipt-" + block number + block hash)
 ```
 
-This doesn't change any consensus logic, only client changes. `eth_getBlockByNumber` , `eth_getTransactionReceipt`  and `eth_getLogs` include state-sync logs with derived. Note that the bloom filter on the block doesn't include inclusion for state-sync logs. It also doesn't include derived tx in `transactionRoot` or `receiptRoot`
+This doesn't change any consensus logic, only client changes. `eth_getBlockByNumber`, `eth_getTransactionReceipt`,  and `eth_getLogs` include state-sync logs with derived. Note that the bloom filter on the block doesn't include inclusion for state-sync logs. It also doesn't include derived tx in `transactionRoot` or `receiptRoot`.

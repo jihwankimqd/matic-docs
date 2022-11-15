@@ -11,7 +11,7 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Cyclic Nature**
+# Cyclic Nature
 
 There is one implicit complexity in the design of state machines:
 

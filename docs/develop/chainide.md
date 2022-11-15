@@ -107,7 +107,7 @@ Note down the **compiler version** and the **license** for your source code. It 
 
 ## **Deploy an ERC-721 Smart Contract**
 
-After successful compilation, it's time to deploy your compiled ERC-721 smart contract to the Polygon Mumbai Testnet. Before you deploy, you need to have MetaMask installed, the Mumbai test network added to your wallet, and some testnet $MATIC tokens to pay for the transaction fees.
+After successful compilation, it's time to deploy your compiled ERC-721 smart contract to the Polygon Mumbai Testnet. Before you deploy, you need to have MetaMask installed, the Mumbai test network added to your wallet, and some testnet MATIC tokens to pay for the transaction fees.
 
 Navigate to the **Deploy & Interaction** module and choose among the compiled smart contract. Select the smart contract you want to deploy and click the **Deploy** button. For this tutorial, the `GameItem` smart contract will be deployed.
 

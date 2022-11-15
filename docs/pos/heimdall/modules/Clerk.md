@@ -1,17 +1,22 @@
 ---
 id: clerk
 title: Clerk
-description: "Module that manages generic state-sync from Ethereum to Bor. "
+description: Module that manages generic state-sync from Ethereum to Bor
 keywords:
   - docs
   - matic
+  - module
+  - state sync
+  - clerk
+  - heimdall
 image: https://matic.network/banners/matic-network-16x9.png 
 ---
-## Overview
 
-Clerk manages generic state-sync from Ethereum chain to Bor chain. Heimdall agrees on state sync, which is initiated on the Ethereum chain using this module.
+# Clerk
 
-More details: [State sync mechanism](/docs/pos/bor/core_concepts#state-management-state-sync)
+Clerk manages generic state-sync from Ethereum chain to Bor chain. Heimdall agrees on state sync, which is initiated on the Ethereum chain using the Clerk module.
+
+More details are available in [state sync mechanism](/docs/pos/bor/core_concepts.md#state-management-state-sync)
 
 ## Messages
 
@@ -34,7 +39,7 @@ type MsgEventRecord struct {
 }
 ```
 
-## CLI commands
+## CLI Commands
 
 ### Send state record transaction
 

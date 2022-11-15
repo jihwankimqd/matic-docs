@@ -5,9 +5,15 @@ description: Current Testnet and Mainnet status and information.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png 
+  - polygon
+  - networks
+  - testnet
+  - mainnet
+  - mumbai
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
+# Networks
 
 - [Network Details](/docs/develop/network-details/network) -> To view network details
 - [Polygon Faucet](https://faucet.polygon.technology/) -> Get TestTokens at Polygon faucet

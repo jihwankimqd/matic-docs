@@ -10,9 +10,9 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# **Modularity**
+# Modularity
 
-## **Introduction**
+## Introduction
 
 Although several polynomials could be added to a state machine to express more operations, it would only make the design hard to test, audit, or formally verify.
 
@@ -37,7 +37,7 @@ To illustrate this process,
 1. First, design a state machine to manage arithmetic operations over $2$-byte elements.
 2. Then, connect this state machine with another state machine (that needs to perform arithmetic operations) via a lookup argument.
 
-## **The Arithmetic State Machine**
+## The Arithmetic State Machine
 
 The _Arithmetic State Machine_ is in charge of checking that some arithmetic operations like additions and multiplications are correctly performed over $2$-byte elements. For this, the polynomials; $\texttt{a}$, $\texttt{b}$, $\texttt{c}$, $\texttt{d}$, and $\texttt{e}$; must satisfy the identity:
 
@@ -79,7 +79,7 @@ These are included in PIL as shown in the code excerpt below.
 
 ![PIL Example](figures/fig13-pil-eg-arth-sm.png)
 
-## **The Main State Machine**
+## The Main State Machine
 
 The _Main State Machine_ is in charge of some (major) tasks, but will specifically use the Arithmetic SM when Arithmetic operations needs to be performed over certain values.
 

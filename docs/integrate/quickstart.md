@@ -5,8 +5,13 @@ description: Build your next blockchain app on Polygon.
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - integrate with polygon
+  - guide
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
+
+# Integrate with Polygon
 
 Polygon is a scaling solution for public blockchains. Polygon supports all existing Ethereum tooling along with faster and cheaper transactions.
 
@@ -34,8 +39,6 @@ Follow the instructions on the articles:
     - [Using Remix](/docs/develop/remix)
     - [Using Truffle](/docs/develop/truffle)
 * Configure the Web3 RPC-URL to https://rpc-mumbai.matic.today, *Everything else remains the same*
-
-
 
 ## Jump to the Essentials
 

@@ -1,7 +1,7 @@
 ---
 id: derivatives
 title: Derivatives
-description: "Delegation through validator shares."
+description: Delegation through validator shares
 keywords:
   - docs
   - polygon
@@ -13,7 +13,9 @@ slug: derivatives
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-Polygon supports [delegation](../../glossary#delegator) via validator shares. By using this design, it is easier to distribute rewards and slash with scale on the Ethereum mainnet contracts without much computation.
+# Derivatives
+
+Polygon supports [delegation](/docs/maintain/glossary#delegator) via validator shares. By using this design, it is easier to distribute rewards and slash with scale on the Ethereum mainnet contracts without much computation.
 
 Delegators delegate by purchasing shares of a finite pool from validators. Each validator has their own validator share token.
 
@@ -43,6 +45,6 @@ The exchange rate is calculated as per the formula:
 
 `unStakeClaimTokens`: Once the withdrawal period is over, the delegators who sold their shares can claim their MATIC tokens.
 
-`updateCommissionRate`: Updates the commission % for the validator. See also [Validator Commission Operations](../../validate/validator-commission-operations).
+`updateCommissionRate`: Updates the commission % for the validator. See also [Validator Commission Operations](/docs/maintain/validate/validator-commission-operations).
 
-`updateRewards`: When a validator gets rewards for submitting a [checkpoint](../../glossary#checkpoint-transaction), this function is called for disbursements of rewards between the validator and delegators.
+`updateRewards`: When a validator gets rewards for submitting a [checkpoint](/docs/maintain/glossary#checkpoint-transaction), this function is called for disbursements of rewards between the validator and delegators.

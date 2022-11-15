@@ -1,13 +1,17 @@
 ---
 id: delegation
-title: Delegation (Validator shares)
-description: "elegation via validator shares."
+title: Delegation via Validator Shares
+description: Delegation via Validator Shares
 keywords:
   - docs
   - matic
+  - polygon
+  - delegation
+  - validator shares
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-## Overview
+
+# Delegation via Validator Shares
 
 Polygon supports delegation via validator shares. By using this design, it is easier to distribute rewards and slash with scale (thousands of delegators) on Ethereum contracts without much computation.
 
@@ -21,9 +25,9 @@ When a validator gets rewarded with more `MATIC` tokens, new tokens are added to
 
 `VATIC`: Validator specific minted validator share tokens (ERC20 tokens)
 
-## Technical specification
+## Technical Specification
 
-```java
+```solidity
 uint256 public validatorId; // Delegation contract for validator
 uint256 public validatorRewards; // accumulated rewards for validator
 uint256 public commissionRate; // validator's cut %
@@ -57,8 +61,8 @@ function buyVoucher(uint256 _amount) public;
 function sellVoucher() public;
 ```
 
-- Using current  `exchangeRate` and # of shares calculate total amount(active stake+ rewards).
-- unBond active stake from validator and transfer rewards to delegator if any.
+- Using current `exchangeRate` and number of shares to calculate total amount (active stake + rewards).
+- `unBond` active stake from validator and transfer rewards to delegator, if any.
 - Must remove active stake from timeline using `updateValidatorState` in stakeManger.
 - `delegators` mapping is used to keep track of stake in withdrawal period.
 
@@ -68,22 +72,22 @@ function sellVoucher() public;
 function withdrawRewards() public;
 ```
 
-- For a delegator calculate the rewards and transfer and depending upon `exchangeRate` burn # of shares.
-- i.e. delegator owns 100 share and exchange rate is 200 so rewards are 100 tokens, transfer 100 tokens to delegator, remaining stake is 100 so using exchange rate 200 now it is worth 50 shares so burn 50 shares. Delegator now has 50 shares worth 100 tokens(which he initially staked/delegated).
+- For a delegator, calculate the rewards and transfer, and depending upon `exchangeRate` burn count of shares.
+- Example: if a delegator owns 100 shares and exchange rate is 200 so rewards are 100 tokens, transfer 100 tokens to delegator. Remaining stake is 100 so using exchange rate 200, now it is worth 50 shares. So burn 50 shares. Delegator now has 50 shares worth 100 tokens (which he initially staked / delegated).
 
 ### reStake
 
-- Restake can work in two ways delegator can buy more shares using `buyVoucher` or reStake rewards.
+Restake can work in two ways: delegator can buy more shares using `buyVoucher` or reStake rewards.
 
 ```js
 function reStake() public;
 ```
 
-- Above function is used to reStake rewards
-- The number of shares aren’t affected because `exchangeRate` is the same; so just the rewards are moved into active stake for both validator share contract and stakeManager timeline.
-- `getLiquidRewards` is used for calculating accumulated rewards.
-- i.e. delegator owns 100 share and exchange rate is 200 so rewards are 100 tokens, move 100 tokens into active stake, since exchange rate is still same number of share will also remain same. Only difference is that now 200 tokens are considered into active stake and can't be withdrawn immediately(not a part of liquid rewards).
-- Purpose of reStaking is that since delegator's validator has now more active stake and she will earn more rewards for that so will the delegator.
+Above function is used to reStake rewards. The number of shares aren’t affected because `exchangeRate` is the same; so just the rewards are moved into active stake for both validator share contract and stakeManager timeline.
+
+`getLiquidRewards` is used for calculating accumulated rewards i.e., delegator owns 100 share and exchange rate is 200, so rewards are 100 tokens. Move 100 tokens into active stake, since exchange rate is still same number of share will also remain same. Only difference is that now 200 tokens are considered into active stake and can't be withdrawn immediately (not a part of liquid rewards).
+
+Purpose of reStaking is that since delegator's validator has now more active stake and they will earn more rewards for that so will the delegator.
 
 ### unStakeClaimTokens
 
@@ -91,8 +95,7 @@ function reStake() public;
 function unStakeClaimTokens()
 ```
 
-- Once withdrawal period is over delegators who've sold their shares can claim their Matic tokens.
-- Must transfer tokens to user.
+Once withdrawal period is over, delegators who've sold their shares can claim their MATIC tokens. Must transfer tokens to user.
 
 ### updateCommissionRate
 
@@ -113,10 +116,6 @@ function updateRewards(uint256 reward, uint256 checkpointStakePower, uint256 val
         returns (uint256)
 ```
 
-- When a validator gets rewards for submitting checkpoint this function is called for disbursements of rewards between validator and delegators.
-
-For more details here is a video explaining the whole mechanism in details:
-
-<!-- [https://www.youtube.com/watch?v=8nODLU9C3mw](https://www.youtube.com/watch?v=8nODLU9C3mw) -->
+When a validator gets rewards for submitting checkpoint, this function is called for disbursements of rewards between validator and delegators. For more details, here is a video explaining the whole mechanism in details:
 
 [![create liquid staking assets - video](https://img.youtube.com/vi/8nODLU9C3mw/0.jpg)](https://www.youtube.com/watch?v=8nODLU9C3mw)

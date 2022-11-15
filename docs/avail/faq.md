@@ -15,61 +15,32 @@ image: https://matic.network/banners/matic-network-16x9.png
 slug: faq
 ---
 
+# Frequently Asked Questions
+
 :::tip
 
-If you do not find your question on this page, please submit your question on the 
-**[Polygon Avail Discord server](https://discord.gg/jXbK2DDeNt)**.
+If you do not find your question on this page, please submit your question on the **[<ins>Polygon Avail Discord server</ins>](https://discord.gg/jXbK2DDeNt)**.
 
 :::
 
-## What is a light client? 
+## What is a light client?
 
-Light clients allow users to interact with a blockchain network
-without having to sync the full blockchain while maintaining
-decentralization and security. Generally, they download the blockchain
-headers, but not the contents of each block. Avail (DA) light clients
-additionally verify that block contents are available by performing
-Data Availability Sampling, a technique where small random sections of
-a block are downloaded.
+Light clients allow users to interact with a blockchain network without having to sync the full blockchain while maintaining decentralization and security. Generally, they download the blockchain headers, but not the contents of each block. Avail (DA) light clients additionally verify that block contents are available by performing Data Availability Sampling, a technique where small random sections of a block are downloaded.
 
 ## What is a popular use case of a light client?
 
-There are many use-cases which today rely on an intermediary to
-maintain a full node, such that end users of a blockchain do not
-communicate directly with the blockchain but instead through the
-intermediary. Light clients have until now not been a suitable
-replacement for this architecture because they lacked data
-availability guarantees. Avail solves this issue, thus enabling more
-applications to directly participate on the blockchain network without
-intermediaries. Although Avail does support full nodes, we expect most
-applications will not need to run one, or will need to run fewer.
+There are many use-cases which today rely on an intermediary to maintain a full node, such that end users of a blockchain do not communicate directly with the blockchain but instead through the intermediary. Light clients have until now not been a suitable replacement for this architecture because they lacked data
+availability guarantees. Avail solves this issue, thus enabling more applications to directly participate on the blockchain network without intermediaries. Although Avail does support full nodes, we expect most applications will not need to run one, or will need to run fewer.
 
 ## What is data availability sampling?
 
-Avail light clients, like other light clients, only download the
-headers of the blockchain. However, they additional perform data
-availability sampling: a technique that randomly samples small
-sections of the block data and verifies they are correct. When
-combined with erasure coding and Kate polynomial commitments, Avail
-clients are able to provide strong (nearly 100%) guarantees of
-availability without relying on fraud proofs, and with only a small
-constant number of queries.
+Avail light clients, like other light clients, only download the headers of the blockchain. However, they additional perform data availability sampling: a technique that randomly samples small sections of the block data and verifies they are correct. When combined with erasure coding and Kate polynomial commitments, Avail clients are able to provide strong (nearly 100%) guarantees of availability without relying on fraud proofs, and with only a small constant number of queries.
 
 ## How is erasure coding used to increase data availability guarantees?
 
-Erasure coding is a technique that encodes data in a way that spreads
-out the information over multiple "shards", such that the loss of some
-number of those shards can be tolerated. That is, the information can
-be reconstructed from the other shards. Applied to the blockchain,
-this means that we effectively increase the size of each block, but we
-prevent a malicious actor from being able to hide any part of a block
-up to the redundant shard size.
+Erasure coding is a technique that encodes data in a way that spreads out the information over multiple "shards", such that the loss of some number of those shards can be tolerated. That is, the information can be reconstructed from the other shards. Applied to the blockchain, this means that we effectively increase the size of each block, but we prevent a malicious actor from being able to hide any part of a block up to the redundant shard size.
 
-Since a malicious actor needs to hide a large part of the block in
-order to attempt to hide even a single transaction, it makes it much
-more likely that random sampling would catch the large gaps in the
-data. Effectively, erasure coding makes the data availibility sampling
-technique much more powerful.
+Since a malicious actor needs to hide a large part of the block in order to attempt to hide even a single transaction, it makes it much more likely that random sampling would catch the large gaps in the data. Effectively, erasure coding makes the data availibility sampling technique much more powerful.
 
 ## What are Kate commitments?
 
@@ -84,19 +55,10 @@ In our construction, we use Kate commitments for the following reasons:
 - The cryptographic binding property helps us avoid fraud proofs by making it computationally infeasible 
   to produce wrong commitments.
 
-<!-- This allows the extension of commitments be same as the commitment to extended data, which proves 
-correctness of commitment construction without having access to the entire data of the block. -->
-
 In the future, we might use other polynomial commitment schemes, if that gives us better bounds or guarantees.
 
 ## Since Avail is used by multiple applications, does that mean chains have to download transactions from other chains?
 
-No. Avail headers contain an index that allows a given application to
-determine and download only the sections of a block that have data for
-that application. Thus, they are largely unaffected by other chains
-using Avail at the same time or by block sizes.
+No. Avail headers contain an index that allows a given application to determine and download only the sections of a block that have data for that application. Thus, they are largely unaffected by other chains using Avail at the same time or by block sizes.
 
-The only exception is data availability sampling. In order to verify
-that data is available (and due to the nature of erasure coding),
-clients sample small parts of the block at random, including possibly
-sections that contain data for other applications.
+The only exception is data availability sampling. In order to verify that data is available (and due to the nature of erasure coding), clients sample small parts of the block at random, including possibly sections that contain data for other applications.
