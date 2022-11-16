@@ -1,11 +1,14 @@
 ﻿---
 id: mapped-tokens
 title: Mapped Tokens
-description: 'Examples about different mapped tokens on Polygon-Mainnet.'
+description: Examples about different mapped tokens on Polygon Mainnet
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - mainnet
+  - mapped tokens
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import Tabs from '@theme/Tabs';

@@ -2,18 +2,18 @@
 id: archive-node-binaries
 title: Set up an Archive Node with Binaries
 sidebar_label: Set up an Archive Node with Binaries
-description: "Using binaries to set up an archive node."
+description: Using binaries to set up an archive node
 keywords:
   - erigon
   - archive
   - node
   - binary
-image: https://matic.network/banners/matic-network-16x9.png
+  - polygon
+  - docs
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-:::tip
-
-To set the Archive Node, you need to follow the same process for a [<ins>deploying a full node with binaries</ins>](https://docs.polygon.technology/docs/develop/network-details/full-node-binaries). However, it requires a minor config change. You should include the following parameter at the `start.sh` file:
+To set the Archive Node, you need to follow the same process for a [<ins>deploying a full node with binaries</ins>](/docs/develop/network-details/full-node-binaries). However, it requires a minor configuration change. You should include the following parameter at the `start.sh` file:
 
 ```makefile
 --gcmode 'archive'

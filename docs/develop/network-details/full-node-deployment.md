@@ -1,15 +1,16 @@
 ---
 id: full-node-deployment
 title: Run a full node with Ansible
-description: Deploy a Full Node using Ansible.
+description: Deploy a Full Node using Ansible
 keywords:
   - docs
   - polygon
   - matic
   - node
-  - full node
+  - full node setup
   - ansible
-image: https://matic.network/banners/matic-network-16x9.png
+  - deploy
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -17,19 +18,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 This tutorial guides you through starting and running a full node using Ansible. 
 
 An [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html) is used to 
-configure and manage a full node. See the [Minimum Technical Requirements](technical-requirements) guide for the system requirements.
+configure and manage a full node. See the [Minimum Technical Requirements](technical-requirements.md) guide for the system requirements.
 
-:::note
+:::tip
 
 Steps in this guide involve waiting for the Heimdall and Bor services to sync fully. This process takes several days to complete.
 
-Alternatively, you can use a maintained snapshot, reducing the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
+Alternatively, you can use a maintained snapshot, reducing the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor).
 
 For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https://snapshots.matic.today/) page.
 
 :::
 
-### **Prerequisites**
+### Prerequisites
 
 - Install Ansible on your local machine with Python3.x. The setup will not work if you have Python2.x.
     - To install Ansible with Python 3.x, you can use pip. If you do not have pip on your machine, 
@@ -37,12 +38,10 @@ For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https
       Ansible.
 - Check the [Polygon PoS Ansible repository](https://github.com/maticnetwork/node-ansible#requirements) for 
   requirements.
-- You will also need to ensure that Go is **not installed** in your environment. You will run into issues if you 
-  attempt to set up your full node through Ansible with Go installed as Ansible requires specific packages of Go 
-  to be installed.
+- You will also need to ensure that Go is **not installed** in your environment. You will run into issues if you attempt to set up your full node through Ansible with Go installed as Ansible requires specific packages of Go to be installed.
 - You will also need to make sure that your VM / Machine does not have any previous setups for Polygon Validator or Heimdall or Bor. You will need to delete them as your setup will run into issues.
 
-:::note Heimdall source enhancements
+:::info Heimdall source enhancements
 
 The latest Heimdall version, **[v.0.2.12](https://github.com/maticnetwork/heimdall/releases/tag/v0.2.12)**, contains a few enhancements. 
 The delay time between the contract events of different validators **has been increased** to ensure that the mempool doesn't get filled 
@@ -56,19 +55,18 @@ Data - "abcd1234"
 Length in string format - 8
 Hex Byte representation - [171 205 18 52]
 Length in byte format - 4
-
 ```
 :::
 
-## **Full node setup**
+## Full node setup
 
 - Ensure you have access to the remote machine or VM on which the full node is being set up. 
   > Refer to [https://github.com/maticnetwork/node-ansible#setup](https://github.com/maticnetwork/node-ansible#setup) for more details.
-- Clone the [`https://github.com/maticnetwork/node-ansible`](https://github.com/maticnetwork/node-ansible) repository.
+- Clone the [https://github.com/maticnetwork/node-ansible](https://github.com/maticnetwork/node-ansible) repository.
 - Navigate into the node-ansible folder: `cd node-ansible`
 - Edit the `inventory.yml` file and insert your IP(s) in the `sentry->hosts` section. 
   > Refer to [https://github.com/maticnetwork/node-ansible#inventory](https://github.com/maticnetwork/node-ansible#inventory) for more details.
-- Check if the remote machine is reachable by running `ansible sentry -m ping`
+- Check if the remote machine is reachable by running: `ansible sentry -m ping`
 - To test if the correct machine is configured, run the following command:
 
   ```bash
@@ -79,7 +77,7 @@ Length in byte format - 4
   ansible-playbook -l sentry playbooks/network.yml --extra-var="bor_branch=v0.2.16 heimdall_branch=v0.2.12 network_version=testnet-v4 node_type=sentry/sentry heimdall_network=mumbai" --list-hosts
   ```
 
-<img src={useBaseUrl("img/network/full-node-mumbai.png")} />
+  <img src={useBaseUrl("img/network/full-node-mumbai.png")} />
 
 - Next, set up the full node with this command:
 
@@ -92,7 +90,10 @@ Length in byte format - 4
   ```
 
 - In case you run into any issues, delete and clean the whole setup using:
-    `ansible-playbook -l sentry playbooks/clean.yml`.
+  ```
+  ansible-playbook -l sentry playbooks/clean.yml
+  ```
+
 - Once you initiate the Ansible playbook, log in to the remote machine.
 - Configure the following in `~/.heimdalld/config/config.toml`:
   ```bash
@@ -132,7 +133,7 @@ Length in byte format - 4
 
 You have successfully set up a full node with Ansible.
 
-## **Logs**
+## Logs
 
 Logs can be managed by the `journalctl` linux tool. Here is a tutorial for advanced usage: [How To Use Journalctl to View and Manipulate Systemd Logs](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs).
 
@@ -153,3 +154,9 @@ journalctl -u heimdalld-rest-server.service -f
 ```bash
 journalctl -u bor.service -f
 ```
+
+## Ports and Firewall Setup
+
+Open ports 22, 26656 and 30303 to world (0.0.0.0/0) on sentry node firewall.
+
+You can use VPN to restrict access for port 22 as per your requirement and security guidelines.

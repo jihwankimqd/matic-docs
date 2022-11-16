@@ -2,8 +2,8 @@ const math = require('remark-math');
 const katex = require('rehype-katex');
 
 module.exports = {
-  title: "Polygon Technology | Documentation",
-  tagline: "Welcome to Polygon developer documentation",
+  title: "Polygon Wiki",
+  tagline: "The official documentation for all Polygon products.",
   url: "https://wiki.polygon.technology",
   baseUrl: "/",
   favicon: "img/polygon/polygon-logo.svg",

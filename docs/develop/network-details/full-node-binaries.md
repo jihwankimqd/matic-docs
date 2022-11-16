@@ -1,7 +1,7 @@
 ---
 id: full-node-binaries
 title: Run a full node with Binaries
-description: Deploy a Full Polygon Node using binaries.
+description: Deploy a Full Polygon Node using binaries
 keywords:
   - docs
   - matic
@@ -9,9 +9,8 @@ keywords:
   - node
   - binaries
   - deploy
-  - full node
-  - run
-image: https://matic.network/banners/matic-network-16x9.png
+  - run full node
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
 import Tabs from '@theme/Tabs';
@@ -20,17 +19,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This tutorial guides you through starting and running a full node using binaries. For the system requirements, see the [Minimum Technical Requirements](technical-requirements.md) guide.
 
-:::note
+:::tip
 
 Steps in this guide involve waiting for the Heimdall and Bor services to fully sync. This process takes several days to complete.
 
-Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](https://forum.polygon.technology/t/snapshot-instructions-for-heimdall-and-bor/9233).
+Alternatively, you can use a maintained snapshot, which will reduce the sync time to a few hours. For detailed instructions, see [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor).
 
 For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https://snapshots.matic.today/) page.
 
 :::
 
-## **Overview**
+## Overview
 
 - Prepare the machine
 - Install Heimdall and Bor binaries on the full node machine
@@ -40,10 +39,12 @@ For snapshot download links, see the [<ins>Polygon Chains Snapshots</ins>](https
 - Check node health with the community
 
 :::note
+
 You have to follow the exact outlined sequence of actions, otherwise you will run into issues.
+
 :::
 
-### **Install `build-essential`**
+### Install `build-essential`
 
 This is **required** for your full node. In order to install, run the below command:
 
@@ -52,7 +53,7 @@ sudo apt-get update
 sudo apt-get install build-essential
 ```
 
-### **Install GO**
+### Install GO
 
 This is also **required** for running your full node. Installing **v1.18 or above** is recommended.
 
@@ -62,13 +63,13 @@ bash go-install.sh
 sudo ln -nfs ~/.go/bin/go /usr/bin/go
 ```
 
-## **Install Binaries**
+## Install Binaries
 
 Polygon node consists of 2 layers: Heimdall and Bor. Heimdall is a tendermint fork that monitors contracts in parallel with the Ethereum network. Bor is basically a Geth fork that generates blocks shuffled by Heimdall nodes.
 
 Both binaries must be installed and run in the correct order to function properly.
 
-### **Heimdall**
+### Heimdall
 
 Install the latest version of Heimdall and related services. Make sure you checkout to the correct [release version](https://github.com/maticnetwork/heimdall/releases). Note that the latest version, [Heimdall v.0.2.12](https://github.com/maticnetwork/heimdall/releases/tag/v0.2.12), contains enhancements such as:
 1. Restricting data size in state sync txs to:
@@ -105,7 +106,7 @@ That will install the `heimdalld` and `heimdallcli` binaries. Verify the install
 heimdalld version --long
 ```
 
-### **Bor**
+### Bor
 
 Install the latest version of Bor. Make sure you git checkout to the correct [released version](https://github.com/maticnetwork/bor/releases).
 
@@ -128,16 +129,16 @@ That will install the `bor` and `bootnode` binaries. Verify the installation by 
 bor version
 ```
 
-## **Configure Node Files**
+## Configure Node Files
 
-### **Fetch launch repo**
+### Fetch launch repo
 
 ```bash
 cd ~/
 git clone https://github.com/maticnetwork/launch
 ```
 
-### **Configure launch directory**
+### Configure launch directory
 
 To set up the network directory, the network name and type of node are required.
 
@@ -156,7 +157,7 @@ mkdir -p node
 cp -rf launch/<network-name>/sentry/<node-type>/* ~/node
 ```
 
-### **Configure network directories**
+### Configure network directories
 
 **Heimdall data setup**
 
@@ -172,9 +173,9 @@ cd ~/node/bor
 bash setup.sh
 ```
 
-## **Configure Service Files**
+## Configure Service Files
 
-Download **service.sh** file using appropriate `<network-name>`. Use `mainnet-v1` for Polygon mainnet and `testnet-v4` for Mumbai Testnet.
+Download `service.sh` file using appropriate `<network-name>`. Use `mainnet-v1` for Polygon mainnet and `testnet-v4` for Mumbai Testnet.
 
 ```bash
 cd ~/node
@@ -189,7 +190,7 @@ sudo chmod -R 777 /etc/matic/
 touch /etc/matic/metadata
 ```
 
-Generate **.service** files and copy them into system directory:
+Generate `.service` files and copy them into system directory:
 
 ```bash
 cd ~/node
@@ -198,10 +199,10 @@ sudo cp *.service /etc/systemd/system/
 ```
 
 
-## **Setup Config Files**
+## Setup Config Files
 
 - Log in to the remote machine / VM
-- You will need to add a few details in the **config.toml** file. To open and edit the **config.toml** file, run the following command: `vi ~/.heimdalld/config/config.toml`.
+- You will need to add a few details in the `config.toml` file. To open and edit the `config.toml` file, run the following command: `vi ~/.heimdalld/config/config.toml`.
 
     In the config file, you will have to change `Moniker` and add `seeds` information:
 
@@ -228,7 +229,7 @@ sudo cp *.service /etc/systemd/system/
     eth_rpc_url=<insert Infura or any full node RPC URL to Goerli>
     ```
 
-- Open the **start.sh** file for Bor using this command: `vi ~/node/bor/start.sh`. Add the following flags to start params:
+- Open the `start.sh` file for Bor using this command: `vi ~/node/bor/start.sh`. Add the following flags to start params:
 
   ```bash
   # Mainnet:
@@ -245,7 +246,7 @@ sudo cp *.service /etc/systemd/system/
   --ws --ws.port 8546 --ws.addr 0.0.0.0 --ws.origins '*' \
   ```
 
-## **Start Services**
+## Start Services
 
 Run the full Heimdall node with these commands on your Sentry Node:
 
@@ -266,7 +267,7 @@ Once Heimdall is synced, run the below command:
 sudo service bor start
 ```
 
-## **Logs**
+## Logs
 
 Logs can be managed by the `journalctl` linux tool. Here is a tutorial for advanced usage: [How To Use Journalctl to View and Manipulate Systemd Logs](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs).
 
@@ -288,7 +289,7 @@ journalctl -u heimdalld-rest-server.service -f
 journalctl -u bor.service -f
 ```
 
-## **Ports and Firewall Setup**
+## Ports and Firewall Setup
 
 Open ports 22, 26656 and 30303 to world (0.0.0.0/0) on sentry node firewall.
 
