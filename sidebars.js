@@ -897,7 +897,7 @@ module.exports = {
           link: {
             type: "doc",
             id: "miden/user_docs/assembly/main"
-          }, 
+          },
           items: [
             "miden/user_docs/assembly/code_organization",
             "miden/user_docs/assembly/flow_control",
@@ -914,12 +914,12 @@ module.exports = {
           link: {
             type: "doc",
             id: "miden/user_docs/stdlib/main"
-          }, 
+          },
           items: [
             "miden/user_docs/stdlib/crypto/hashes",
             "miden/user_docs/stdlib/math/u64",
             "miden/user_docs/stdlib/sys"
-          ]  
+          ]
         }
       ]
     },
@@ -980,7 +980,7 @@ module.exports = {
     },
     "miden/background"
   ],
-  
+
   zkEVM: [
     "zkEVM/develop",
     "zkEVM/overview",
@@ -1192,6 +1192,35 @@ module.exports = {
           items: [
           ],
         },
+        {
+          type: "category",
+          label: "Additional features",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            {
+              type: "category",
+              label: "Chainbridge",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "edge/additional-features/chainbridge/overview",
+                "edge/additional-features/chainbridge/definitions",
+                "edge/additional-features/chainbridge/setup",
+                "edge/additional-features/chainbridge/setup-erc20-transfer",
+                "edge/additional-features/chainbridge/setup-erc721-transfer",
+                "edge/additional-features/chainbridge/use-case-erc20-bridge",
+                "edge/additional-features/chainbridge/use-case-erc721-bridge",
+              ],
+            },
+            "edge/additional-features/stress-testing",
+            "edge/additional-features/blockscout",
+            "edge/additional-features/permission-contract-deployment",
+            "edge/additional-features/predeployment",
+          ],
+        },
       ],
     },
     {
@@ -1231,34 +1260,51 @@ module.exports = {
             },
           ],
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "Work with a node",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/working-with-node/query-json-rpc",
-        "edge/working-with-node/query-operator-info",
-        "edge/working-with-node/backup-restore",
-      ],
-    },
-    {
-      type: "category",
-      label: "Run a validator",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/validator-hosting",
-        "edge/get-started/installation",
-        "edge/get-started/set-up-ibft-locally",
-        "edge/get-started/set-up-ibft-on-the-cloud",
-        "edge/get-started/cli-commands",
-        "edge/get-started/json-rpc-commands",
-        "edge/get-started/terraform-aws-deployment",
+        {
+          type: "category",
+          label: "Work with a node",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "edge/working-with-node/query-json-rpc",
+            "edge/working-with-node/query-operator-info",
+            "edge/working-with-node/backup-restore",
+          ],
+        },
+        {
+          type: "category",
+          label: "Run a validator",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "edge/validator-hosting",
+          ],
+        },
+        {
+          type: "category",
+          label: "Performance Reports",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "edge/performance-reports/overview",
+            {
+              type: "category",
+              label: "Test History",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "edge/performance-reports/test-history/test-2022-07-04",
+                "edge/performance-reports/test-history/test-2022-03-23",
+                "edge/performance-reports/test-history/test-2022-03-02",
+                "edge/performance-reports/test-history/test-2022-01-21",
+              ],
+            },
+          ],
+        },
       ],
     },
     {
@@ -1291,58 +1337,7 @@ module.exports = {
         },
       ],
     },
-    {
-      type: "category",
-      label: "Additional features",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        {
-          type: "category",
-          label: "Chainbridge",
-          link: {
-            type: "generated-index",
-          },
-          items: [
-            "edge/additional-features/chainbridge/overview",
-            "edge/additional-features/chainbridge/definitions",
-            "edge/additional-features/chainbridge/setup",
-            "edge/additional-features/chainbridge/setup-erc20-transfer",
-            "edge/additional-features/chainbridge/setup-erc721-transfer",
-            "edge/additional-features/chainbridge/use-case-erc20-bridge",
-            "edge/additional-features/chainbridge/use-case-erc721-bridge",
-          ],
-        },
-        "edge/additional-features/stress-testing",
-        "edge/additional-features/blockscout",
-        "edge/additional-features/permission-contract-deployment",
-        "edge/additional-features/predeployment",
-      ],
-    },
-    {
-      type: "category",
-      label: "Performance Reports",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        "edge/performance-reports/overview",
-        {
-          type: "category",
-          label: "Test History",
-          link: {
-            type: "generated-index",
-          },
-          items: [
-            "edge/performance-reports/test-history/test-2022-07-04",
-            "edge/performance-reports/test-history/test-2022-03-23",
-            "edge/performance-reports/test-history/test-2022-03-02",
-            "edge/performance-reports/test-history/test-2022-01-21",
-          ],
-        },
-      ],
-    },
+
     {
       type: "category",
       label: "FAQs",
