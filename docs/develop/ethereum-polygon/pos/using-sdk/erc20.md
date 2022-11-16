@@ -11,9 +11,9 @@ image: https://matic.network/banners/matic-network-16x9.png
 
 Check out the latest [Matic.js Documentation on ERC20](https://maticnetwork.github.io/matic.js/docs/pos/erc20/).
 
-This tutorial uses the Polygon Testnet ( Mumbai ) which is mapped to the Goerli Network to demonstrate the asset transfer to and fro the two blockchains. An **important thing to be noted** while following this tutorial is that you should always use a Proxy address whenever it is available. For eg. The **RootChainManagerProxy** address has to be used for interaction instead of the **RootChainManager** address. The **PoS contract addresses, ABI, Test Token Addresses** and other deployment details of the PoS bridge contracts can be found [here](/docs/develop/ethereum-polygon/pos/deployment).
+This tutorial uses the Polygon Testnet ( Mumbai ) which is mapped to the Goerli Network to demonstrate the asset transfer to and fro the two blockchains. An **important thing to be noted** while following this tutorial is that you should always use a Proxy address whenever it is available. For example, the **RootChainManagerProxy** address has to be used for interaction instead of the **RootChainManager** address. The **PoS contract addresses, ABI, Test Token Addresses** and other deployment details of the PoS bridge contracts can be found [here](/docs/develop/ethereum-polygon/pos/deployment).
 
-**Mapping your assets** is necessary to integrate the PoS bridge on your application. You can submit a mapping request [here](/docs/develop/ethereum-polygon/submit-mapping-request). But for the purpose of this tutorial, we have already deployed the **Test tokens** and Mapped then on the PoS bridge. You may need it for trying out the tutorial on your own. You can request the desired Asset from the [faucet](https://faucet.polygon.technology/). If the test tokens are unavailable on the faucet, do reach us on [discord](https://discord.com/invite/0xPolygonn)
+**Mapping your assets** is necessary to integrate the PoS bridge on your application. You can submit a mapping request [here](/docs/develop/ethereum-polygon/submit-mapping-request). But for the purpose of this tutorial, we have already deployed the **Test tokens** and mapped them on the PoS bridge. You may need it for trying out the tutorial on your own. You can request the desired Asset from the [faucet](https://faucet.polygon.technology/). If the test tokens are unavailable on the faucet, do reach us on [discord](https://discord.com/invite/0xPolygonn).
 
 In the upcoming tutorial, every step will be explained in detail along with a few code snippets. However, you can always refer to this [repository](https://github.com/maticnetwork/matic.js/tree/master/examples/pos) which will have all the **example source code** that can help you to integrate and understand the working of PoS bridge.
 
@@ -26,12 +26,10 @@ Deposit ERC20 -
 
 Withdraw ERC20 -
 
-1. **_Burn_** tokens on Polygon chain.
-2. Call **_exit_** function on **_RootChainManager_** to submit proof of burn transaction. This call can be made **_after checkpoint_** is submitted for the block containing burn transaction.
+1. Burn tokens on the Polygon chain.
+2. Call the `exit()` function on `RootChainManager` to submit proof of burn transaction. This call can be made after the checkpoint is submitted for the block containing the burn transaction.
 
-## Step Details
-
----
+## Steps Details
 
 ### Approve
 
@@ -49,7 +47,7 @@ const execute = async () => {
 
 ### Deposit
 
-Note that token needs to be mapped and approved for transfer beforehand. Polygon POS client exposes **_deposit_** method to make this call.
+Note that the token needs to be mapped and approved for transfer beforehand. Polygon PoS client exposes the `deposit()` method to make this call.
 
 ```jsx
 const execute = async () => {
@@ -64,11 +62,13 @@ const execute = async () => {
 }
 ```
 
-> NOTE: Deposits from Ethereum to Polygon happen using a state sync mechanism and takes about ~22-30 minutes. After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos) explains how to track the deposit events.
+:::note
+Deposits from Ethereum to Polygon happen using a **State Sync** mechanism and take about 22-30 minutes. After waiting for this time interval, it is recommended to check the balance using the web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [<ins>link</ins>](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos) explains how to track deposit events.
+:::
 
 ### WithdrawStart method to Burn
 
-*withdrawStart* method can be used to initiate the withdraw process which will burn the specified amount on polygon chain.
+The `withdrawStart()` method can be used to initiate the withdrawal process which will burn the specified amount on the Polygon chain.
 
 ```jsx
 const execute = async () => {
@@ -86,12 +86,13 @@ Store the transaction hash for this call and use it while generating burn proof.
 
 ### Exit
 
-Once the **_checkpoint_** has been **_submitted_** for the block containing burn transaction, user should call the **_exit_** function of **_RootChainManager_** contract and submit the proof of burn. Upon submitting valid proof tokens are transferred to the user. Polygon POS client exposes **_withdrawExit_** method to make this call. This function can be called only after the checkpoint is included in the main chain. The checkpoint inclusion can be tracked by following this [guide](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos#checkpoint-events).
+Once the checkpoint has been submitted for the block containing the burn transaction, the user should call the `exit()` function of the `RootChainManager` contract and submit the proof of burn. Upon submitting valid proof, tokens are transferred to the user. Polygon PoS client exposes the `withdrawExit` method to make this call. This function can be called only after the checkpoint is included in the main chain. The checkpoint inclusion can be tracked by following [this guide](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos.md#checkpoint-events).
 
 *withdrawExit* method can be used to exit the withdraw process by using the txHash from *withdrawStart* method.
 
-Note- withdrawStart transaction must be checkpointed in order to exit the withdraw.
-
+:::note
+The withdrawStart transaction must be checkpointed in order to exit the withdraw.
+:::
 
 ```jsx
 const execute = async () => {

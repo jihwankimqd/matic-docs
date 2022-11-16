@@ -5,6 +5,7 @@ description: "Create an asset on Polygon."
 keywords:
   - docs
   - matic
+  - mint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
@@ -44,7 +45,7 @@ Mainnet: 0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa
 
 Please do mention the contract address of the deployed child token when you submit the mapping request. 
 
-> Note that the Ethereum contract needs to be deployed as shown in the next step - no minting needs to be done on Ethereum though. It is required so that tokens can be withdrawn to Ethereum if need be. 
+Note that the Ethereum contract needs to be deployed as shown in the next step - no minting needs to be done on Ethereum though. It is required so that tokens can be withdrawn to Ethereum if need be. 
 
 ### Contract to be deployed on Ethereum
 

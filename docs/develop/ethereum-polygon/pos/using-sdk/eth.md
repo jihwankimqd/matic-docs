@@ -6,6 +6,9 @@ description: "Deposit and withdraw ETH tokens on the Polygon network."
 keywords:
   - docs
   - matic
+  - ether
+  - withdraw
+  - deposit
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
@@ -19,7 +22,7 @@ This section of the docs deals with how to deposit and withdraw ERC20 tokens on 
 
 This guide uses the Polygon Testnet (Mumbai) which in itself is mapped to the Goerli Network to demonstrate asset transfer between the two blockchains. It's important to note that for the purposes of this tutorial, you should use a proxy address whenever is possible. This is because while the implementation contract address is liable to change when a new update is added to the contract code, the proxy never changes and it redirects all the incoming calls to the latest implementation. In essence, if you use the proxy address, you won't need to worry about any changes happening on the implementation contract before you're ready.
 
-For example, please use the **RootChainManagerProxy** address for interactions instead of the **RootChainManager** address. Deployment details like the PoS contract addresses, ABI, Test Token Addresses can be found [here](https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/deployment/)
+For example, please use the `RootChainManagerProxy` address for interactions instead of the `RootChainManager` address. Deployment details like the PoS contract addresses, ABI, and Test Token Addresses can be found [here](/docs/develop/ethereum-polygon/pos/deployment/).
 
 Mapping your assets is a necessary step for integrating the PoS bridge on your application so if you haven't done it, please submit a mapping request [here](https://docs.polygon.technology/docs/develop/ethereum-polygon/submit-mapping-request/). For the purposes of this tutorial, the team has deployed test tokens and mapped them to the PoS bridge. Request the asset you want to use on the [faucet](https://faucet.polygon.technology/) and if the test tokens are unavailable, reach out to the team on [Discord](https://discord.com/invite/0xPolygon). We'll make sure to reply you immediately.
 
@@ -48,13 +51,15 @@ const txHash = await result.getTransactionHash();
 const txReceipt = await result.getReceipt();
 ```
 
-Sidenote: Deposits from Ethereum to Polygon happen using the **State Sync** Mechanism and this takes about 22-30 minutes. After waiting for this time interval, it is recommended to check the balance using web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [link](https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos/) explains how to track the deposit events.
+:::note
+Deposits from Ethereum to Polygon happen using the **State Sync** Mechanism and this takes about 22-30 minutes. After waiting for this time interval, it is recommended to check the balance using the web3.js/matic.js library or using Metamask. The explorer will show the balance only if at least one asset transfer has happened on the child chain. This [<ins>link</ins>](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos/) explains how to track deposit events.
+:::
 
 ### Burn
 
-**_ETH_** is deposited as **_ERC20_** token on Polygon chain. For withdrawing it follow the same process as withdrawing ERC20 tokens.
+ETH is deposited as an ERC20 token on the Polygon chain. Withdrawing follows the same process as withdrawing ERC20 tokens.
 
-To burn the tokens and engage the withdrawal process, please call the **Withdraw** function of the MaticWETH contract. Since Ether is an ERC20 token on the Polygon chain, you need to initiate the **erc20** token from the Polygon PoS client and then call **withdrawStart** method to start the burn process.
+To burn the tokens and engage the withdrawal process, call the withdraw function of the MaticWETH contract. Since Ether is an ERC20 token on the Polygon chain, you need to initiate the **ERC20** token from the Polygon PoS client and then call the `withdrawStart()` method to start the burn process.
 
 ```jsx
 const erc20Token = posClient.erc20(<token address>);
@@ -73,7 +78,7 @@ Store the transaction hash for this call and use it while generating burn proof.
 ### Exit
 
 
-Once the **checkpoint** has been submitted for the block containing burn transaction, user should call the **exit** function of `RootChainManager` contract and submit the proof of burn. Upon submitting valid proof tokens are transferred to the user. Polygon POS client `erc20` exposes `withdrawExit` method to make this call. This function can be called only after the checkpoint is included in the main chain. The checkpoint inclusion can be tracked by following this [guide](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos#checkpoint-events).
+Once the **checkpoint** has been submitted for the block containing the burn transaction, the user should call the **exit** function of `RootChainManager` contract and submit the proof of burn. Upon submitting valid proof tokens are transferred to the user. Polygon POS client `erc20` exposes `withdrawExit` method to make this call. This function can be called only after the checkpoint is included in the main chain. The checkpoint inclusion can be tracked by following this [guide](/docs/develop/ethereum-polygon/pos/deposit-withdraw-event-pos.md#checkpoint-events).
 
 
 ```jsx

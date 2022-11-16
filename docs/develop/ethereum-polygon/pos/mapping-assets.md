@@ -5,6 +5,7 @@ description: "Mapping assets from Polygon to Ethereum."
 keywords:
   - docs
   - matic
+  - mapping
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
@@ -38,9 +39,13 @@ If you need a custom child token contract which has additional functions to the 
 
 `withdraw` method should be present in your custom child contract. It can be called to burn your tokens on the child chain. Burning is the first step of your withdrawal process. This withdraw function will internally burn the token on the child chain.
 
-These rules need to followed to maintain proper balance of assets between two chains.
+These rules need to be followed to maintain proper balance of assets between two chains.
 
-> Note: No token minting in constructor of child token contract.
+:::note
+
+No token minting in constructor of child token contract.
+
+:::
 
 #### Implementation
 

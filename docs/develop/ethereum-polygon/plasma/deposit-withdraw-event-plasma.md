@@ -13,7 +13,7 @@ Please check the latest [Matic.js documentation on Plasma](https://maticnetwork.
 
 ## Deposit Events
 
-When a token is deposited from Ethereum to Polygon, a process called state sync mechanism comes into play that eventually mints the tokens for the user on the Polygon chain. This process takes about ~22-30 minutes to happen and hence listening to the deposit event is very important to create a good user experience. This is an example script that can be used to track real time deposit events.
+When a token is deposited from Ethereum to Polygon, a process called state sync mechanism comes into play that eventually mints the tokens for the user on the Polygon chain. This process takes about 22-30 minutes to happen and hence listening to the deposit event is very important to create a good user experience. This is an example script that can be used to track real time deposit events.
 
 ### Realtime deposit event tracking using a web socket connection
 
@@ -74,9 +74,9 @@ checkDepositStatus(
   });
 ```
 
-### Historical deposit completion check by querying the blockchain.
+### Historical deposit completion check by querying the blockchain
 
-This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can considered as completed successfully.
+This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can be considered as successfully completed.
 
 ```js
 let Web3 = require("web3");
@@ -138,7 +138,7 @@ depositCompleted(
 
 ### Real-time checkpoint status tracking
 
-All transactions that occur on Polygon chain are check-pointed to the Ethereum chain in frequent intervals of time by the validators. This time is ~10 mins on Mumbai and ~30 mins on Polygon mainnet. The checkpoint occurs on a contract called the RootChain contract deployed on Ethereum chain. The following script can be used to listen to Real-time checkpoint inclusion events.
+All transactions that occur on Polygon chain are checkpointed to the Ethereum chain in frequent intervals of time by the validators. This time, it is around 10 mins on Mumbai and 30 mins on Polygon mainnet. The checkpoint occurs on a contract called the RootChain contract deployed on Ethereum chain. The following script can be used to listen to real-time checkpoint inclusion events.
 
 ```jsx
 const Web3 = require("web3");
@@ -201,9 +201,9 @@ checkInclusion(
   });
 ```
 
-### Historical checkpoint inclusion check by querying the blockchain.
+### Historical checkpoint inclusion check by querying the blockchain
 
-This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a param to this GET API.
+This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a parameter to this GET API.
 
 ```
 // Testnet

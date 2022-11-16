@@ -28,7 +28,8 @@ The Polygon PoS bridge is available for both mainnet as well as Mumbai testnet. 
 In order to map tokens between Ethereum and Polygon, you have to submit a mapping request. It has to be submitted on [https://mapper.polygon.technology/](https://mapper.polygon.technology/). Open the link and click on the **'Map New Token'** button on the top right corner to create a new mapping request.
 
 <img src={useBaseUrl("img/token-mapping/mapping-tool.png")} />
-
+<br />
+<br />
 
 - The type of [bridge](/docs/develop/ethereum-polygon/getting-started) has to be selected from the **"Choose map type"** dropdown.
 - The type of your token can be selected by switching among the three tabs marked as "ERC20", "ERC721" and "ERC1155". For mapping any other token standard, you can reach out to the Polygon team on [Discord](https://discord.com/invite/0xPolygon) or create a ticket [here](https://support.polygon.technology/support/home) and keep "Token Mapping" in the ticket title.
@@ -45,14 +46,12 @@ In  case of a custom child mapping, there is a checklist that you need to finish
 
 ### Mintable tokens
 
-:::tip
-
 Checkout the documentation for mintable tokens available [<ins>here</ins>](/docs/develop/ethereum-polygon/mintable-assets.md).
 
 1. The `deposit` and `withdraw` function is present in the ***child*** token contract. (Reference Template contract - [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC20.sol#L1492-#L1519), [ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC721.sol#L2160-#L2275), [ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/ChildMintableERC1155.sol#L1784-#L1851))
 2. Only the ChildChainManagerProxy address has the right to call the `deposit` function. (ChildChainManagerProxy - on [Mumbai](https://mumbai.polygonscan.com/address/0xb5505a6d998549090530911180f38aC5130101c6/transactions) , on [Polygon Mainnet](https://polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa/))
 3. The root chain contract is a standard [ERC20](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC20.sol#L1481)/[ERC721](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC721.sol#L2169)/[ERC1155](https://github.com/maticnetwork/pos-portal/blob/master/flat/DummyMintableERC1155.sol#L1785)
-4. The `mint` function on the ***root*** contract can only be called by the corresponding token, **PredicateProxyAddress**. (PredicateProxyAddress for each token type can be found [here](/docs/develop/ethereum-polygon/mintable-assets.md#contract-to-be-deployed-on-ethereum)).
+4. The `mint` function on the `root` contract can only be called by the corresponding token, `PredicateProxyAddress`. (`PredicateProxyAddress` for each token type can be found [here](/docs/develop/ethereum-polygon/mintable-assets.md#contract-to-be-deployed-on-ethereum))
 
 ### Non-mintable tokens
 

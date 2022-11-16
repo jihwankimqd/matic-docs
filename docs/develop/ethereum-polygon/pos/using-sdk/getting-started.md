@@ -8,7 +8,7 @@ keywords:
   - matic
   - polygon
   - sdk
-  - maticjs
+  - matic.js
   - pos
 image: https://matic.network/banners/matic-network-16x9.png
 ---
@@ -20,7 +20,7 @@ To get started, check the latest [Matic.js documentation](/docs/develop/ethereum
 
 ## Quick Summary
 
-The matic.js SDK takes all the computing power of Polygon and places it right at your finger tip. With custom-made functions that allow for approval, deposit and withdrawals, all without doing too much footwork. Our reason for engineering this was to ensure you get instant value from our platform.
+The Matic.js SDK takes all the computing power of Polygon and places it right at your finger tip. With custom-made functions that allow for approval, deposit and withdrawals, all without doing too much footwork. Our reason for engineering this was to ensure you get instant value from our platform.
 
 ## Installation
 The first step to using the awesome power of Polygon via our SDK is by doing an NPM install of it. Find [here](https://www.npmjs.com/package/@maticnetwork/maticjs).
@@ -42,7 +42,7 @@ import HDWalletProvider from "@truffle/hdwallet-provider"
 use(Web3ClientPlugin)
 ```
 
-The providers can be RPC urls or web3 based providers like Metamask provider, HDWalletProvider etc. based on requirement.
+The providers can be RPC URLs or web3-based providers like Metamask provider, HDWalletProvider etc. based on requirement.
 
 For more information, please have a look at the [Matic.js documentation on PoS](https://maticnetwork.github.io/matic.js/docs/pos/).
 

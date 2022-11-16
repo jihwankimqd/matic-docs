@@ -6,12 +6,14 @@ description: "Track the pace and speed of transactions on Polygon."
 keywords:
   - docs
   - matic
+  - deposit
+  - checkpoint
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
 ## Quick Summary
 
-This section of the docs deal with tracking and monitoring the pace and speed of transactions done within the Polygon ecosystem. Depositing into the network (when done with the PoS bridge) typically takes an average of 22-30 minutes but we've seen instances where users seek to see real time progress reports. As a developer, you may also want to augment the  UX of your app with instant feedback to the user. In all these cases, look into this section, we have exactly what you need.
+This section of the docs deals with tracking and monitoring the pace and speed of transactions done within the Polygon ecosystem. Depositing into the network (when done with the PoS bridge) typically takes an average of 22-30 minutes but we've seen instances where users seek to see real time progress reports. As a developer, you may also want to augment the  UX of your app with instant feedback to the user. In all these cases, this section might be useful.
 
 ## Deposit Events
 
@@ -116,7 +118,7 @@ checkDepositStatus(
 
 ### Historical deposit completion check by querying the blockchain
 
-This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can considered as completed successfully.
+This script can be used to check if a particular deposit has been completed on the child chain or not. The main chain and the child chain keep incrementing the value of a global counter variable on both the chains. The [StateSender](https://github.com/maticnetwork/contracts/blob/develop/contracts/root/stateSyncer/StateSender.sol#L38) contract emits an event that has the counter value. The counter value on the child chain can be queried from the [StateReceiver](https://github.com/maticnetwork/genesis-contracts/blob/master/contracts/StateReceiver.sol#L12) contract. If the counter value on child chain is greater than or equal to the same on main chain, then the deposit can be considered as successfully completed.
 
 ```jsx
 let Web3 = require("web3");
@@ -178,7 +180,7 @@ depositCompleted(
 
 ### Real-time checkpoint status tracking
 
-All transactions that occur on Polygon chain are check-pointed to the Ethereum chain in frequent intervals of time by the validators. This time is ~10 mins on Mumbai and ~30 mins on Polygon mainnet. The checkpoint occurs on a contract called the **RootChainContract** deployed on Ethereum chain. The following script can be used to listen to real-time checkpoint inclusion events.
+All transactions that occur on the Polygon chain are checkpointed to the Ethereum chain at frequent intervals of time by the validators. This time is around 10 mins on Mumbai and around 30 mins on Polygon Mainnet. The checkpoint occurs on a contract called the `RootChainContract` deployed on the Ethereum chain. The following script can be used to listen to real-time checkpoint inclusion events.
 
 ```js
 const Web3 = require("web3");
@@ -245,7 +247,7 @@ checkInclusion(
 
 ### Historical checkpoint inclusion check by querying the blockchain
 
-This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a param to this GET API.
+This can be checked using the following API. The block number of the burn transaction on the child chain has to be given as a parameter to this GET API.
 
 ```js
 // Testnet

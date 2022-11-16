@@ -19,17 +19,17 @@ to optimise for speed and decentralisation. We consciously architected the syste
 
 **There is no change to the circulating supply of your token when it crosses the bridge**;
 
-- Tokens that leave ethereum network are locked and the same number of tokens are minted on Polygon as a pegged token (1:1).
-- To move the tokens back to the ethereum network, tokens are burned on Polygon network and unlocked on ethereum network during the process.
+- Tokens that leave the Ethereum network are locked and the same number of tokens are minted on Polygon as a pegged token (1:1).
+- To move the tokens back to the Ethereum network, tokens are burned on Polygon network and unlocked on Ethereum network during the process.
 
 ## PoS vs Plasma
 
 |                                      | PoS Bridge(Recommended)                                                                  | Plasma Bridge                                                                             |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **Short description**                | DApp Developers looking for flexibility and faster withdrawals with POS system security | DApp Developers looking for increased security guarantees with Plasma exit mechanism\.   |
+| **Short description**                | DApp Developers looking for flexibility and faster withdrawals with POS system security. | DApp Developers looking for increased security guarantees with Plasma exit mechanism\.   |
 | **Structure**                        | Highly flexible                                                                          | Rigid, Less Flexible                                                                      |
 | **Deposit\(Ethereum → Polygon\)**    | 22-30 mins                                                                                 | 22-30 mins                                                                                  |
-| **Withdrawal\(Polygon → Ethereum\)** | 1 checkpoint = ~ 30 mins to 6 hours                                                      | Call to the process-exit procedure on Ethereum's contract.                                |
+| **Withdrawal\(Polygon → Ethereum\)** | 1 checkpoint = ~ 30 mins to 6 hours                                                      | Call to the process-exit procedure on Ethereum's contract                               |
 | **Security**                         | Proof\-of\-Stake system, secured by a robust set of external validators\.                | Polygon’s Plasma contracts piggybacks on Ethereum’s security.                             |
 | **Support Standards**                | ETH, ERC20, ERC721, ERC1155 and Others                                                   | Only ETH, ERC20, ERC721                                                                   |
 

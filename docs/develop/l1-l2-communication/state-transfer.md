@@ -12,13 +12,13 @@ image: https://matic.network/banners/matic-network-16x9.png
 
 Polygon validators continuously monitor a contract on Ethereum chain called **_StateSender_**. Each time a registered contract on Ethereum chain calls this contract, it emits an event. Using this event Polygon validators relay the data to another contract on Polygon chain. This **_StateSync_** mechanism is used to send data from Ethereum to Polygon.
 
-Polygon validators also periodically submit a hash of all transactions on Polygon chain to Ethereum chain. This **_Checkpoint_** can be used to verify any transaction that happened on Polygon. Once a transaction is verified to have happened on Polygon chain, action can be taked accordingly on Ethereum.
+Polygon validators also periodically submit a hash of all transactions on the Polygon chain to the Ethereum chain. This **Checkpoint** can be used to verify any transaction that happened on Polygon. Once a transaction is verified to have happened on the Polygon chain, an action can be taken accordingly on Ethereum.
 
-These 2 mechanisms can be used together to enable two way data(state) transfer between Ethereum and Polygon. To abstract out all these interactions, you can directly inherit our **_FxBaseRootTunnel_** (on Ethereum) and **_FxBaseChildTunnel_** (on Polygon) contracts.
+These 2 mechanisms can be used together to enable two-way data (state) transfer between Ethereum and Polygon. To abstract out all these interactions, you can directly inherit our `FxBaseRootTunnel` (on Ethereum) and `FxBaseChildTunnel` (on Polygon) contracts.
 
 ### Root Tunnel Contract
 
-Use the `FxBaseRootTunnel` contract from [here](https://github.com/jdkanani/fx-portal/blob/main/contracts/tunnel/FxBaseRootTunnel.sol). This contract gives access to following functions:
+Use the `FxBaseRootTunnel` contract from [here](https://github.com/jdkanani/fx-portal/blob/main/contracts/tunnel/FxBaseRootTunnel.sol). This contract gives access to the following functions:
 
 - `function _processMessageFromChild(bytes memory data)`: This is a virtual function that needs to be implemented in the contract which inherits it to handle data being sent from ChildTunnel.
 - `_sendMessageToChild(bytes memory message)`: This function can be called internally with any bytes data as a message. This data will be sent as it is to the child tunnel.
@@ -28,14 +28,14 @@ Use the `FxBaseRootTunnel` contract from [here](https://github.com/jdkanani/fx-p
 
 Use the `FxBaseChildTunnel` contract from [here](https://github.com/jdkanani/fx-portal/blob/main/contracts/tunnel/FxBaseChildTunnel.sol). This contract gives access to following functions:
 
-- `function _processMessageFromRoot(uint256 stateId, address sender, bytes memory data)`: This is a virtual function that needs to implement the logic to handle message sent from the RootTunnel.
+- `function _processMessageFromRoot(uint256 stateId, address sender, bytes memory data)`: This is a virtual function that needs to implement the logic to handle messages sent from the `RootTunnel`.
 - `function _sendMessageToRoot(bytes memory message)`: This function can be called internally to send any bytes message to the root tunnel.
 
 ## Pre-requisite
 
-- You'd need to inherit `FxBaseRootTunnel` contract in your root contract on ethereum. As an example, you can follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateRootTunnel.sol) . Similarly, inherit `FxBaseChildTunnel` contract in your child on Matic. Follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateChildTunnel.sol) as an example.
-- While deploying your root contract on **Goerli testnet**, pass the address of `_checkpointManager` as `0x2890bA17EfE978480615e330ecB65333b880928e` and `_fxRoot` as `0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA` . For **ethereum mainnet** `_checkpointManager` is `0x86e4dc95c7fbdbf52e33d563bbdb00823894c287` and `_fxRoot` is `0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2`.
-- For deploying the child contract on **Mumbai testnet**, pass`0xCf73231F28B7331BBe3124B907840A94851f9f11` as `_fxChild` in constructor. For **Polygon mainnet,** `_fxChild` will be `0x8397259c983751DAf40400790063935a11afa28a` .
+- You need to inherit `FxBaseRootTunnel` contract in your root contract on Ethereum. As an example, you can follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateRootTunnel.sol) . Similarly, inherit `FxBaseChildTunnel` contract in your child on Polygon. Follow this [contract](https://github.com/jdkanani/fx-portal/blob/main/contracts/examples/state-transfer/FxStateChildTunnel.sol) as an example.
+- While deploying your root contract on **Goerli testnet**, pass the address of `_checkpointManager` as `0x2890bA17EfE978480615e330ecB65333b880928e` and `_fxRoot` as `0x3d1d3E34f7fB6D26245E6640E1c50710eFFf15bA` . For **Ethereum mainnet** `_checkpointManager` is `0x86e4dc95c7fbdbf52e33d563bbdb00823894c287` and `_fxRoot` is `0xfe5e5D361b2ad62c541bAb87C45a0B9B018389a2`.
+- For deploying the child contract on **Mumbai testnet**, pass `0xCf73231F28B7331BBe3124B907840A94851f9f11` as `_fxChild` in constructor. For **Polygon mainnet,** `_fxChild` will be `0x8397259c983751DAf40400790063935a11afa28a` .
 - call `setFxChildTunnel` on deployed root tunnel with the address of child tunnel (E.g: [https://goerli.etherscan.io/tx/0x79cd30ace561a226258918b56ce098a08ce0c70707a80bba91197f127a48b5c2](https://goerli.etherscan.io/tx/0x79cd30ace561a226258918b56ce098a08ce0c70707a80bba91197f127a48b5c2) )
 - call `setFxRootTunnel` on deployed child tunnel with address of root tunnel (E.g: [https://mumbai.polygonscan.com/tx/0xffd0cda35a8c3fd6d8c1c04cd79a27b7e5e00cfc2ffc4b864d2b45a8bb7e98b8/internal-transactions](https://mumbai.polygonscan.com/tx/0xffd0cda35a8c3fd6d8c1c04cd79a27b7e5e00cfc2ffc4b864d2b45a8bb7e98b8/internal-transactions) )
 
@@ -47,13 +47,13 @@ Use the `FxBaseChildTunnel` contract from [here](https://github.com/jdkanani/fx-
 
 ## State transfer from Ethereum to Polygon
 
-- You'd need to call `_sendMessageToChild()` internally in your root contract and pass the data as an argument to be sent to Polygon. (E.g: [https://goerli.etherscan.io/tx/0x28705fcae757a0c88694bd167cb94a2696a0bc9a645eb4ae20cff960537644c1](https://goerli.etherscan.io/tx/0x28705fcae757a0c88694bd167cb94a2696a0bc9a645eb4ae20cff960537644c1) )
+- You need to call `_sendMessageToChild()` internally in your root contract and pass the data as an argument to be sent to Polygon. (E.g: [https://goerli.etherscan.io/tx/0x28705fcae757a0c88694bd167cb94a2696a0bc9a645eb4ae20cff960537644c1](https://goerli.etherscan.io/tx/0x28705fcae757a0c88694bd167cb94a2696a0bc9a645eb4ae20cff960537644c1) )
 - In your child contract, implement `_processMessageFromRoot()` virtual function in `FxBaseChildTunnel` to retrieve data from Ethereum. The data will be received automatically from the state receiver when the state is synced.
 
 ## State transfer from Polygon to Ethereum
 
 - Call `_sendMessageToRoot()` internally in your child contract with data as a parameter to be sent to Ethereum. ( E.g: [https://mumbai.polygonscan.com/tx/0x3cc9f7e675bb4f6af87ee99947bf24c38cbffa0b933d8c981644a2f2b550e66a/logs](https://mumbai.polygonscan.com/tx/0x3cc9f7e675bb4f6af87ee99947bf24c38cbffa0b933d8c981644a2f2b550e66a/logs) )
-- Note the transaction hash as it'll be used to generate proof after it has been included as a checkpoint. Use the following sample script to generate proof from transaction hash.
+- Note the transaction hash as it'll be used to generate proof after it has been included as a checkpoint. Use the following sample script to generate proof from the transaction hash.
 
 ```jsx
 // npm i @maticnetwork/maticjs
