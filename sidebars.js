@@ -1194,6 +1194,27 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Modules",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "edge/architecture/modules/blockchain",
+            "edge/architecture/modules/minimal",
+            "edge/architecture/modules/networking",
+            "edge/architecture/modules/state",
+            "edge/architecture/modules/txpool",
+            "edge/architecture/modules/json-rpc",
+            "edge/architecture/modules/consensus",
+            "edge/architecture/modules/storage",
+            "edge/architecture/modules/types",
+            "edge/architecture/modules/syncer",
+            "edge/architecture/modules/sealer",
+            "edge/architecture/modules/other-modules",
+          ],
+        },
+        {
+          type: "category",
           label: "Additional features",
           link: {
             type: "generated-index",
@@ -1302,36 +1323,6 @@ module.exports = {
                 "edge/performance-reports/test-history/test-2022-01-21",
               ],
             },
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Develop with Edge",
-      link: {
-        type: "generated-index",
-      },
-      items: [
-        {
-          type: "category",
-          label: "Modules",
-          link: {
-            type: "generated-index",
-          },
-          items: [
-            "edge/architecture/modules/blockchain",
-            "edge/architecture/modules/minimal",
-            "edge/architecture/modules/networking",
-            "edge/architecture/modules/state",
-            "edge/architecture/modules/txpool",
-            "edge/architecture/modules/json-rpc",
-            "edge/architecture/modules/consensus",
-            "edge/architecture/modules/storage",
-            "edge/architecture/modules/types",
-            "edge/architecture/modules/syncer",
-            "edge/architecture/modules/sealer",
-            "edge/architecture/modules/other-modules",
           ],
         },
       ],
