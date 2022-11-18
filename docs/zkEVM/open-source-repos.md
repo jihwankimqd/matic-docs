@@ -14,8 +14,6 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# Source Code Repositories
-
 This document provides the complete list of all available source code repositories related to Polygon zkEVM and its components including the zkProver. Feel free to check out the [Polygon zkEVM](https://github.com/0xPolygonHermez) organization on Github.
 
 ## Core repositories

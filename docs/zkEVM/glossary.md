@@ -12,8 +12,6 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# Glossary
-
 ### Layer 1
 
 Layer 1 or the base blockchain is where the rollup smart contracts are installed. It's Ethereum or a testnet of Ethereum, but it could be any EVM-compatible blockchain.

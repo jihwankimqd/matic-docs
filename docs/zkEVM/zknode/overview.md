@@ -1,8 +1,8 @@
 ---
-id: zkNode
-title: zkNode
-sidebar_label: zkNode
-description: "Detailed description of zkNodes"
+id: overview
+title: Overview
+sidebar_label: Overview
+description: Detailed overview of zkNode and its setup
 keywords:
   - docs
   - zk rollups
@@ -14,8 +14,6 @@ keywords:
   - zkNode
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
-# zkNode
 
 ## Introduction
 

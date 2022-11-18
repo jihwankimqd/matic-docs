@@ -13,8 +13,6 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# Components
-
 ## Namespaces
 
 State machines in PIL are organized in _namespaces_. Namespaces are written with the keyword $\texttt{namespace}$ followed by the name of the state machine, and they can optionally include other parameters. In the below snippet, a state machine called $\texttt{Name}$ is created.

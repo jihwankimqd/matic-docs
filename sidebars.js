@@ -985,7 +985,17 @@ module.exports = {
     "zkEVM/develop",
     "zkEVM/overview",
     "zkEVM/proof-of-efficiency",
-    "zkEVM/zkNode",
+    {
+      type: "category",
+      label: "zkNode",
+      link: {
+        type: "generated-index"
+      },
+      items:[
+        "zkEVM/zknode/overview",
+        "zkEVM/zknode/setup-local-node"
+      ]
+    },
     "zkEVM/Architecture/zkProver",
     "zkEVM/lx-ly-bridge",
     {

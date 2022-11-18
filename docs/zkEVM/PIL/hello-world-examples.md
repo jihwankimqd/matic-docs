@@ -11,8 +11,6 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# Beginner Examples
-
 ## State Machine that Multiplies Two Numbers
 
 Consider a state machine that takes two input numbers $x$ and $y$, and multiplies them. Hence call the state machine, the _Multiplier_ state machine, described by the function;

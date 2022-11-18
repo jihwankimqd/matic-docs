@@ -13,8 +13,6 @@ keywords:
 image: https://matic.network/banners/matic-network-16x9.png
 ---
 
-# zkProver
-
 Core to the integrity of the **Polygon zkEVM** is its zero-knowledge prover, aka the **zkProver**.
 
 This documentation provides a detailed architectural description of the zkProver without delving deep into its technical complexities. Additionally, it briefly describes its state machines, which are fully documented [<ins>here</ins>](https://docs.hermez.io/zkEVM/zkProver/State-Machines/Overview/zkProver-State-Machines/#state-machines).

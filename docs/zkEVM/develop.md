@@ -1,6 +1,6 @@
 ---
 id: develop
-title: Build on zkEVM
+title: Build on Polygon zkEVM
 sidebar_label: Build on zkEVM
 description: Guide to start building on Polygon zkEVM
 keywords:
@@ -15,8 +15,6 @@ keywords:
   - deploy on zkEVM
 image: https://matic.network/banners/matic-network-16x9.png
 ---
-
-# Build on Polygon zkEVM
 
 ## Introduction
 
