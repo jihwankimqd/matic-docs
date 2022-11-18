@@ -2,20 +2,22 @@
 id: full-node-docker
 title: Run a full node with Docker
 sidebar_label: Run a full node with Docker
-description:  Guide to run a full node using Docker.
+description:  Guide to run a full node using Docker
 keywords:
   - docs
   - matic
   - docker
-  - node
-image: https://matic.network/banners/matic-network-16x9.png 
+  - full node
+  - polygon
+  - deploy
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 
-The Polygon team distributes official Docker images which can be used to run nodes on the Polygon mainnet. These instructions are for running a Full Node, but they can be adapted for running sentry nodes and validators as well.
+The Polygon team distributes official Docker images which can be used to run nodes on the Polygon Mainnet. These instructions are for running a Full Node, but they can be adapted for running sentry nodes and validators as well.
 
+:::tip Snapshots
 
-:::note Snapshots
-You’ll find that syncing from scratch can take a very long time. If you’d like to speed the process up, you can follow the instructions listed here: [<ins>https://docs.polygon.technology/docs/develop/network-details/snapshot-instructions-heimdall-bor/</ins>](https://docs.polygon.technology/docs/develop/network-details/snapshot-instructions-heimdall-bor/)
+You’ll find that syncing from scratch can take a very long time. If you’d like to speed the process up, you can follow the instructions listed here: [<ins>Snapshot Instructions for Heimdall and Bor</ins>](/docs/develop/network-details/snapshot-instructions-heimdall-bor)
 
 This will be the most up to date instructions, but roughly you can do something like the steps below:
 ```bash
@@ -30,13 +32,14 @@ tar xzf bor-fullnode-snapshot-2022-07-01.tar.gz -C /mnt/data/bor/bor/chaindata
 :::
 
 ## Prerequisites
-The general configuration for running a Polygon full node is to have **at least** 4 CPUs/cores and 16 GB of RAM. For this walk through, we’re going to be using AWS and a `t3.2xlarge` instance type. The application can run on both x86 and Arm architectures.
+
+The general configuration for running a Polygon full node is to have **at least** 4 CPUs/cores and 16 GB of RAM. For this walk through, we’re going to be using AWS and a `t3.2xlarge` instance type. The application can run on both x86 and ARM architectures.
 
 These instructions are based on Docker, so it should be easy to follow along with almost any operating system, but we’re using Ubuntu.
 
-In terms of space, for a full node you’ll probably need at least 1.5 terrabytes of SSD (or faster) storage.
+In terms of space, for a full node you’ll probably need at least 1.5 terabytes of SSD (or faster) storage.
 
-The peer exchange for a Polygon full node generally depends on port 30303 and 26656 being open. When you configure your firewall or security groups for AWS, make sure those ports are open along with whatever ports you need to access the machine.
+The peer exchange for a Polygon full node generally depends on port 30303 and 26656 being open. When you configure your firewall or security groups for AWS, make sure these ports are open along with whatever ports you need to access the machine.
 
 TLDR:
 
@@ -47,10 +50,9 @@ TLDR:
 ## Initial Setup
 At this point, you should have shell access with root privileges to a linux machine.
 
-
 ![img](/img/full-node-docker/term-access.png)
 
-### Docker
+### Install Docker
 Most likely your operating system won’t have Docker installed by default. Please follow the instructions for your particular distribution found here: https://docs.docker.com/engine/install/
 
 We’re following the instructions for Ubuntu. The steps are included below, but please see the official instructions in case they’ve been updated.
@@ -65,7 +67,6 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
 ```
 
 At this point you should have Docker installed. In order to verify, you should be able to run a command like this:
@@ -88,7 +89,7 @@ Now you should be able to logout and log back in and run docker commands without
 ### Disk Setup
 The exact steps required here are going to vary a lot based on your needs. Most likely you’ll have a root partition running your operating system on one device. You’ll probably want one or more devices for actually holding the blockchain data. For the rest of the walkthrough, we’re going to have that additional device mounted at `/mnt/data`.
 
-In this example, I have a device with 4 TB of available space located at `/dev/nvme1n1`. I’m going to mount that using the steps below:
+In this example, we have a device with 4 TB of available space located at `/dev/nvme1n1`. We are going to mount that using the steps below:
 
 ```bash
 sudo mkdir /mnt/data
@@ -125,6 +126,7 @@ sudo findmnt --verify --verbose
 At this point you should be able to reboot and confirm that the system loads your mount properly.
 
 ### Heimdall Setup
+
 At this point, we have a host with docker running on it and we have ample mounted storage to run our Polygon node software. So let’s get Heimdall configured and running.
 
 First let’s make sure we can run Heimdall with docker. Run the following command:
@@ -145,7 +147,21 @@ At this point, let’s run the Heimdall `init` command to set up our home direct
 docker run -v /mnt/data/heimdall:/heimdall-home:rw --entrypoint /usr/local/bin/heimdalld -it 0xpolygon/heimdall:0.2.12 init --home=/heimdall-home
 ```
 
-Let’s break this command down a bit in case anything goes wrong. We’re using `docker run` to run a command via docker. The switch `-v /mnt/data/heimdall:/heimdall-home:rw` is very important. It’s mounting the folder that we created earlier `/mnt/data/heimdall` from our host system to `/heimdall-home` within the container as a docker volume. The `rw` allows the command to write to this docker volume. For all intents and purposes, from within the docker container, the home directory for Heimdall will be `/heimdall-home`. The argument `--entrypoint /usr/local/bin/heimdalld` is overriding the default entry point for this container. The switch `-it` is used to run the command interactively. Finally we’re specifying which image we want to run with `0xpolygon/heimdall:0.2.12`. After that `init --home=/heimdall-home` are arguments being passed to the heimdalld executable. `init` is the command we want to run and `--home` is used to specify the location of the home directory.
+Let’s break this command down a bit in case anything goes wrong.
+
+* We’re using `docker run` to run a command via docker.
+
+* The switch `-v /mnt/data/heimdall:/heimdall-home:rw` is very important. It’s mounting the folder that we created earlier `/mnt/data/heimdall` from our host system to `/heimdall-home` within the container as a docker volume.
+
+* The `rw` allows the command to write to this docker volume. For all intents and purposes, from within the docker container, the home directory for Heimdall will be `/heimdall-home`.
+
+* The argument `--entrypoint /usr/local/bin/heimdalld` is overriding the default entry point for this container.
+
+* The switch `-it` is used to run the command interactively.
+
+* Finally we’re specifying which image we want to run with `0xpolygon/heimdall:0.2.12`.
+
+* After that `init --home=/heimdall-home` are arguments being passed to the heimdalld executable. `init` is the command we want to run and `--home` is used to specify the location of the home directory.
 
 After running the `init` command, your `/mnt/data/heimdall` directory should have some structure and look like this:
 
@@ -158,22 +174,28 @@ Now we need to make a few updates before starting Heimdall. First we’re going 
 # moniker = "YOUR NODE NAME HERE"
 # laddr = "tcp://0.0.0.0:26657"
 # seeds = "LATEST LIST OF SEEDS"
+
 sudo emacs /mnt/data/heimdall/config/config.toml
 ```
 
 If you don’t have a list of seeds, you can find one in the documentation for setting up a full node. In our case, our file has these three lines:
 
 ```
+# A custom human readable name for this node
 moniker="examplenode01"
 
-# ...
-
+# TCP or UNIX socket address for the RPC server to listen on
 laddr = "tcp://0.0.0.0:26657"
 
-# ...
-
+# Comma separated list of seed nodes to connect to
 seeds="f4f605d60b8ffaaf15240564e58a81103510631c@159.203.9.164:26656,4fb1bc820088764a564d4f66bba1963d47d82329@44.232.55.71:26656,2eadba4be3ce47ac8db0a3538cb923b57b41c927@35.199.4.13:26656,3b23b20017a6f348d329c102ddc0088f0a10a444@35.221.13.28:26656,25f5f65a09c56e9f1d2d90618aa70cd358aa68da@35.230.116.151:26656"
 ```
+
+:::caution
+
+There are two `laddr` inside `config.toml` file. Make sure that you only change the `laddr` parameter under `[rpc]` section.
+
+:::
 
 Now that your `config.toml` file is all set, you’ll need to make two small changes to your `heimdall-config.toml` file. Use your favorite editor to update these two settings:
 
@@ -185,7 +207,7 @@ eth_rpc_url = "http://localhost:9545"
 bor_rpc_url = "http://localhost:8545"
 ```
 
-The `eth_rpc_url` should be updated to whatever URL you use for Ethereum Mainnet RPC. The `bor_rpc_url` in our case is going to be updated to http://bor:8545. After making the edits our file has these lines:
+The `eth_rpc_url` should be updated to whatever URL you use for Ethereum Mainnet RPC. The `bor_rpc_url` in our case is going to be updated to http://bor:8545. After making the edits, our file has these lines:
 
 ```
 # RPC endpoint for ethereum chain
@@ -193,7 +215,6 @@ eth_rpc_url = "https://eth-mainnet.g.alchemy.com/v2/ydmGjsREDACTED_DONT_USE9t7FS
 
 # RPC endpoint for bor chain
 bor_rpc_url = "http://bor:8545"
-
 ```
 
 The default `init` command provides a `genesis.json` but that will not work with Polygon Mainnet or Mumbai. If you’re setting up a mainnet node, you can run this command to download the correct genesis file:
@@ -222,7 +243,19 @@ Now we’re going to start Heimdall. Run the following command:
 docker run -p 26657:26657 -p 26656:26656 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdall --entrypoint /usr/local/bin/heimdalld -d --restart unless-stopped  0xpolygon/heimdall:0.2.12 start --home=/heimdall-home
 ```
 
-Many of the pieces of this command will look familiar. So let’s talk about what’s new. The `-p 26657:26657` and `-p 26656:26656` switches are port mappings. This will instruct docker to map the host port `26657` to the container port `26657` and the same for `26656`. The `--net polygon` switch is telling docker to run this container in the polygon network. `--name heimdall` is naming the container which is useful for debugging, but it’s all the name that will be used for other containers to connect to Heimdall. The `-d` argument tells docker to run this container in the background. The switch `--restart unless-stopped` tells docker to automatically restart the container unless it was stopped manually. Finally, start is being used to actually run the application instead of `init` which just set `up the home directory.
+Many of the pieces of this command will look familiar. So let’s talk about what’s new.
+
+* The `-p 26657:26657` and `-p 26656:26656` switches are port mappings. This will instruct docker to map the host port `26657` to the container port `26657` and the same for `26656`.
+
+* The `--net polygon` switch is telling docker to run this container in the polygon network.
+
+* `--name heimdall` is naming the container which is useful for debugging, but it’s all the name that will be used for other containers to connect to Heimdall.
+
+* The `-d` argument tells docker to run this container in the background.
+
+* The switch `--restart unless-stopped` tells docker to automatically restart the container unless it was stopped manually.
+
+* Finally, `start` is being used to actually run the application instead of `init` which just set up the home directory.
 
 At this point it’s helpful to check and see what’s going on. These two commands can be useful:
 
@@ -234,7 +267,7 @@ docker ps
 docker logs -ft heimdall
 ```
 
-At this point, Heimdall should start syncing. When you look at the logs you should see a log of information being spit out that looks like this:
+At this point, Heimdall should start syncing. When you look at the logs, you should see a log of information being spit out that looks like this:
 
 ```
 2022-07-14T23:00:28.917026245Z I[2022-07-14|23:00:28.916] Executed block                               module=state height=5 validTxs=0 invalidTxs=0
@@ -256,7 +289,7 @@ curl localhost:26657/status
 
 This will return a response like:
 
-```jsx
+```json
 {
   "jsonrpc": "2.0",
   "id": "",
@@ -300,9 +333,10 @@ This will return a response like:
 In this initial setup phase, it’s important to pay attention to the `sync_info` field. If `catching_up` is true, it means that Heimdall is not fully synced. You can check the other properties within `sync_info` to get a sense how far behind Heimdall is.
 
 ## Starting Bor
+
 At this point, you should have a node that’s successfully running Heimdall. You should be ready now to run Bor.
 
-Before we get started with Bor, we need to run the Heimdall rest server. This command will start a REST API that Bor uses to retrieve information from Heimdall. The command to start server is
+Before we get started with Bor, we need to run the Heimdall rest server. This command will start a REST API that Bor uses to retrieve information from Heimdall. The command to start server is:
 
 ```bash
 docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --name heimdallrest --entrypoint /usr/local/bin/heimdalld -d --restart unless-stopped 0xpolygon/heimdall:0.2.12 rest-server --home=/heimdall-home --node "tcp://heimdall:26657"
@@ -310,15 +344,15 @@ docker run -p 1317:1317 -v /mnt/data/heimdall:/heimdall-home:rw --net polygon --
 
 There are two pieces of this command that are different and worth noting. Rather than running the `start` command, we’re running the `rest-server` command. Also, we’re passing `~–node “tcp://heimdall:26657”~` which tells the rest server how to communicate with Heimdall.
 
-If this command runs successfully, when you run `docker ps` you should see two commands containers running now. Additionally, if you run this command you should see some basic output:
+If this command runs successfully, when you run `docker ps`, you should see two commands containers running now. Additionally, if you run this command you should see some basic output:
 
 ```bash
 curl localhost:1317/bor/span/1
 ```
 
-Bor will rely on this interface. So if you don’t see JSON output, there is something wrong.
+Bor will rely on this interface. So if you don’t see JSON output, there is something wrong!
 
-Now let’s download the genesis file for Bor specifically:
+Now let’s download the `genesis` file for Bor specifically:
 
 ```bash
 sudo curl -o /mnt/data/bor/genesis.json 'https://raw.githubusercontent.com/maticnetwork/bor/develop/builder/files/genesis-mainnet-v1.json'
@@ -331,16 +365,17 @@ Let’s verify the `sha256 sum` again for this file:
 5c10eadfa9d098f7c1a15f8d58ae73d67e3f67cf7a7e65b2bd50ba77eeac67e1  genesis.json
 ```
 
-Now we need to init the Bor home directory. This command is similar to what we did for Heimdall:
+Now we need to `init` the Bor home directory. This command is similar to what we did for Heimdall:
 
 ```bash
 docker run -v /mnt/data/bor:/bor-home:rw -it  0xpolygon/bor:0.2.16 --datadir /bor-home init /bor-home/genesis.json
 ```
-Most of the pieces of this command should look very familiar. Instead of `--home` we’re setting the `--datadir` flag to tell bor where to preserve the data.
+
+Most of the pieces of this command should look very familiar. Instead of `--home` we’re setting the `--datadir` flag to tell Bor where to preserve the data.
 
 For reference, you can see the details for the Bor image here: https://hub.docker.com/repository/docker/0xpolygon/bor
 
-After downloading the genesis file and running `init` our Bor home directory should look something like this.
+After downloading the `genesis` file and running `init`, our Bor home directory should look something like this.
 
 ```bash
 tree /mnt/data/bor/
@@ -397,7 +432,6 @@ docker run -p 30303:30303 -p 8545:8545 -v /mnt/data/bor:/bor-home:rw --net polyg
 If everything goes well, you should see lots of logs that look like this:
 
 ```
-
 2022-07-14T23:52:13.192421406Z INFO [07-14|23:52:13.192] Started P2P networking                   self=enode://2397c716686829ecec1e08d8b4517535ac8b7fbf60895c78fd4cdec72f6c7ddaf550c7ca13f3dc505e901ddbd874350e40e29a6d36de1e9649cee30461bd9ae0@127.0.0.1:30303
 2022-07-14T23:52:13.193420223Z INFO [07-14|23:52:13.193] IPC endpoint opened                      url=/bor-home/bor.ipc
 2022-07-14T23:52:13.193685711Z INFO [07-14|23:52:13.193] HTTP server started                      endpoint=[::]:8545 auth=false prefix= cors=* vhosts=*
@@ -433,9 +467,9 @@ curl 'localhost:8545/' \
 }'
 ```
 
-When you run this command it will give you a result like:
+When you run this command, it will give you a result like:
 
-```jsx
+```json
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -459,7 +493,7 @@ When you run this command it will give you a result like:
 }
 ```
 
-This will indicate the `currentBlock` that’s been synced and also the `highestBlock` that we’re aware of. If the node is already synced we should get `false`.
+This will indicate the `currentBlock` that’s been synced and also the `highestBlock` that we’re aware of. If the node is already synced, we should get `false`.
 
 Based on how we’ve set up our system, we can also use a console to query the state of the node. This is how we might do that.
 
@@ -496,3 +530,9 @@ This will give you some output to give you a sense of the current progress.
   syncedStorageBytes: 0
 }
 ```
+
+## Ports and Firewall Setup
+
+Open ports 22, 26656 and 30303 to world (0.0.0.0/0) on sentry node firewall.
+
+You can use VPN to restrict access for port 22 as per your requirement and security guidelines.

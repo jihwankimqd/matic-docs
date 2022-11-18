@@ -1,11 +1,13 @@
 ---
 id: genesis-contracts
 title: Genesis Contracts
-description: Genesis contracts list.
+description: Genesis contracts list on Polygon
 keywords:
   - docs
   - matic
-image: https://matic.network/banners/matic-network-16x9.png 
+  - polygon
+  - genesis contracts
+image: https://wiki.polygon.technology/img/polygon-wiki.png
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
