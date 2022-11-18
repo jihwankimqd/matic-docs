@@ -1234,7 +1234,6 @@ module.exports = {
         "edge/get-started/set-up-ibft-locally",
         "edge/get-started/set-up-ibft-on-the-cloud",
         "edge/get-started/cli-commands",
-        "edge/get-started/json-rpc-commands",
         "edge/get-started/terraform-aws-deployment",
         {
           type: "category",
@@ -1337,7 +1336,19 @@ module.exports = {
         },
       ],
     },
-
+    {
+      type: "category",
+      label: "JSON RPC Commands",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "edge/api/json-rpc-eth",
+        "edge/api/json-rpc-net",
+        "edge/api/json-rpc-web3",
+        "edge/api/json-rpc-txpool",
+      ],
+    },
     {
       type: "category",
       label: "FAQs",
