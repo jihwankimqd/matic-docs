@@ -42,7 +42,7 @@ Polygon consists of the three following layers:
 To be a validator on the Polygon Network, you must run:
 
 * Sentry node — a separate machine running a Heimdall node and a Bor node. A sentry node is open to all nodes on the Polygon Network.
-* Validator node — a separate machine running a Heimdall node and a Bor node. A validator node receives the data from and the sends the data to the sentry node.
+* Validator node — a separate machine running a Heimdall node and a Bor node. A validator node is only open to its sentry node and closed to the rest of the network.
 * Stake the MATIC tokens in the staking contracts deployed on the Ethereum mainnet.
 
 ## Components
