@@ -103,7 +103,7 @@ See also [Key Management](validator/core-components/key-management.md).
 
 ## Validator
 
-The validator role stakes the MATIC tokens and is running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
+Validators stake their tokens on the Ethereum mainnet staking contracts and is running both the [Heimdall](#heimdall) node and the [Bor](#bor) node to commit the network checkpoints to the Ethereum mainnet and to produce blocks on the network.
 
 A validator node is only open to its [sentry](#sentry) node and closed to the rest of the network.
 
