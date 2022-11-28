@@ -89,7 +89,7 @@ See also [Bor Consensus: Span](/docs/pos/bor/consensus.md#span).
 
 ## Staking
 
-Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators / stakers in the Polygon Network. Other examples include ETH in ETH 2.0, ATOM in Cosmos, etc.
+Staking is the process of locking up tokens into a deposit to earn the right to validate and produce blocks on a blockchain. Typically staking is done in the native token for the network — for the MATIC token is locked up by validators / stakers in the Polygon Network. Other examples include ETH in Ethereum (post-merge), ATOM in Cosmos, etc.
 
 See also [What Is Proof of Stake](polygon-basics/what-is-proof-of-stake.md).
 
